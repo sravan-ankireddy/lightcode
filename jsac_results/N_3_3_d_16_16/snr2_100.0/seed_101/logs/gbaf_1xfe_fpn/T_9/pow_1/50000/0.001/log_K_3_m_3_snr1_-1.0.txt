@@ -1,0 +1,311 @@
+AE(
+  (pe): PositionalEncoder_fixed(
+    (dropout): Dropout(p=0.0, inplace=False)
+  )
+  (Tmodel): ae_backbone(
+    (fe1): FE(
+      (FC1): Linear(in_features=19, out_features=32, bias=True)
+      (activation1): ReLU()
+      (FC2): Linear(in_features=32, out_features=32, bias=True)
+      (activation2): ReLU()
+      (FC3): Linear(in_features=32, out_features=32, bias=True)
+      (FC4): Linear(in_features=64, out_features=16, bias=True)
+    )
+    (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+    (out1): Linear(in_features=16, out_features=4, bias=True)
+    (out2): Linear(in_features=4, out_features=1, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+  )
+  (Rmodel): ae_backbone(
+    (fe1): FE(
+      (FC1): Linear(in_features=9, out_features=32, bias=True)
+      (activation1): ReLU()
+      (FC2): Linear(in_features=32, out_features=32, bias=True)
+      (activation2): ReLU()
+      (FC3): Linear(in_features=32, out_features=32, bias=True)
+      (FC4): Linear(in_features=64, out_features=16, bias=True)
+    )
+    (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+    (out): Linear(in_features=16, out_features=8, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+  )
+  (total_power_reloc): Power_reallocate()
+)
+Total number of trainable parameters: 7547
+Total number of trainable parameters in Tmodel: 3897
+Total number of trainable parameters in Rmodel: 3640
+-->-->-->-->-->-->-->-->-->--> start training ...
+
+GBAF train stats: batch#0, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 2.19793963
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.8371040225, numErr 418552, num_pkts 5.00e+05
+Time elapsed: 0.00441518227259318 mins
+
+GBAF test stats: batch#0, SER 0.8371040225, numErr 418552
+Final test SER = 0.8371040225028992, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.8371040225028992, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#5000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00182436
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000958, numErr 479, num_pkts 5.00e+05
+Time elapsed: 0.004405689239501953 mins
+
+GBAF test stats: batch#0, SER 0.000958, numErr 479
+Final test SER = 0.0009580000187270343, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.0009580000187270343, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#10000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00104166
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000306, numErr 153, num_pkts 5.00e+05
+Time elapsed: 0.004010228315989176 mins
+
+GBAF test stats: batch#0, SER 0.000306, numErr 153
+Final test SER = 0.0003060000017285347, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.0003060000017285347, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#15000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00071061
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000216, numErr 108, num_pkts 5.00e+05
+Time elapsed: 0.005871609846750895 mins
+
+GBAF test stats: batch#0, SER 0.000216, numErr 108
+Final test SER = 0.00021600000036414713, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00021600000036414713, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#20000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00084166
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000248, numErr 124, num_pkts 5.00e+05
+Time elapsed: 0.003930139541625977 mins
+
+GBAF test stats: batch#0, SER 0.000248, numErr 124
+Final test SER = 0.0002479999966453761, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.0002479999966453761, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#25000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00063316
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000192, numErr 96, num_pkts 5.00e+05
+Time elapsed: 0.004103326797485351 mins
+
+GBAF test stats: batch#0, SER 0.000192, numErr 96
+Final test SER = 0.00019200000679120421, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00019200000679120421, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#30000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00048752
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0001, numErr 50, num_pkts 5.00e+05
+Time elapsed: 0.0036878347396850585 mins
+
+GBAF test stats: batch#0, SER 0.0001, numErr 50
+Final test SER = 9.999999747378752e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 9.999999747378752e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#35000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00026837
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.00013, numErr 65, num_pkts 5.00e+05
+Time elapsed: 0.0044198195139567055 mins
+
+GBAF test stats: batch#0, SER 0.00013, numErr 65
+Final test SER = 0.00013000000035390258, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00013000000035390258, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#40000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00056378
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000236, numErr 118, num_pkts 5.00e+05
+Time elapsed: 0.0036765217781066896 mins
+
+GBAF test stats: batch#0, SER 0.000236, numErr 118
+Final test SER = 0.00023600000713486224, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00023600000713486224, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#45000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00025003
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000102, numErr 51, num_pkts 5.00e+05
+Time elapsed: 0.005213757356007894 mins
+
+GBAF test stats: batch#0, SER 0.000102, numErr 51
+Final test SER = 0.00010199999815085903, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00010199999815085903, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#50000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00047016
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.00014, numErr 70, num_pkts 5.00e+05
+Time elapsed: 0.003643377621968587 mins
+
+GBAF test stats: batch#0, SER 0.00014, numErr 70
+Final test SER = 0.00014000000373926014, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00014000000373926014, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#55000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00053121
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 5.8e-05, numErr 29, num_pkts 5.00e+05
+Time elapsed: 0.0037711699803670245 mins
+
+GBAF test stats: batch#0, SER 5.8e-05, numErr 29
+Final test SER = 5.8000001445179805e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 5.8000001445179805e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#60000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00014085
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 5.6e-05, numErr 28, num_pkts 5.00e+05
+Time elapsed: 0.005091222127278646 mins
+
+GBAF test stats: batch#0, SER 5.6e-05, numErr 28
+Final test SER = 5.6000000768108293e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 5.6000000768108293e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#65000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00048734
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.000186, numErr 93, num_pkts 5.00e+05
+Time elapsed: 0.004545056819915771 mins
+
+GBAF test stats: batch#0, SER 0.000186, numErr 93
+Final test SER = 0.00018600000475998968, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 0.00018600000475998968, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#70000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00022976
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 8.4e-05, numErr 42, num_pkts 5.00e+05
+Time elapsed: 0.004400138060251872 mins
+
+GBAF test stats: batch#0, SER 8.4e-05, numErr 42
+Final test SER = 8.399999933317304e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 8.399999933317304e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#75000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00010841
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 4.8e-05, numErr 24, num_pkts 5.00e+05
+Time elapsed: 0.0041752775510152185 mins
+
+GBAF test stats: batch#0, SER 4.8e-05, numErr 24
+Final test SER = 4.8000001697801054e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 4.8000001697801054e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#80000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.00039363
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 9.2e-05, numErr 46, num_pkts 5.00e+05
+Time elapsed: 0.0049105485280354815 mins
+
+GBAF test stats: batch#0, SER 9.2e-05, numErr 46
+Final test SER = 9.200000204145908e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 9.200000204145908e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#85000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 9.03e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 2.4e-05, numErr 12, num_pkts 5.00e+05
+Time elapsed: 0.003900031248728434 mins
+
+GBAF test stats: batch#1, SER 2.7e-05, numErr 27
+Final test SER = 2.700000004551839e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 2.700000004551839e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#90000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 7.701e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 3.8e-05, numErr 19, num_pkts 5.00e+05
+Time elapsed: 0.0035333991050720214 mins
+
+GBAF test stats: batch#1, SER 4.5e-05, numErr 45
+Final test SER = 4.5000000682193786e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 4.5000000682193786e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#95000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 8.665e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 3.2e-05, numErr 16, num_pkts 5.00e+05
+Time elapsed: 0.00430225928624471 mins
+
+GBAF test stats: batch#1, SER 3.2e-05, numErr 32
+Final test SER = 3.199999991920777e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 3.199999991920777e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#100000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 0.0013269
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 3e-05, numErr 15, num_pkts 5.00e+05
+Time elapsed: 0.0038889169692993162 mins
+
+GBAF test stats: batch#1, SER 2.9e-05, numErr 29
+Final test SER = 2.9000000722589903e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 2.9000000722589903e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#105000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 9.668e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 1.6e-05, numErr 8, num_pkts 5.00e+05
+Time elapsed: 0.0036079088846842446 mins
+
+GBAF test stats: batch#1, SER 2.6e-05, numErr 26
+Final test SER = 2.5999999706982635e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 2.5999999706982635e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#110000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 5.583e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 6e-06, numErr 3, num_pkts 5.00e+05
+Time elapsed: 0.005066903432210287 mins
+
+GBAF test stats: batch#5, SER 7e-06, numErr 21
+Final test SER = 7.000000096013537e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 7.000000096013537e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#115000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 3.164e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 1.4e-05, numErr 7, num_pkts 5.00e+05
+Time elapsed: 0.004046789805094401 mins
+
+GBAF test stats: batch#3, SER 1.05e-05, numErr 21
+Final test SER = 1.049999991664663e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 1.049999991664663e-05, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+GBAF train stats: batch#120000, lr 0.001, snr1 -1.0, snr2 100.0, BS 50000, Loss 7.757e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 6e-06, numErr 3, num_pkts 5.00e+05
+Time elapsed: 0.00618363618850708 mins
+
+GBAF test stats: batch#7, SER 5.5e-06, numErr 22
+Final test SER = 5.500000042957254e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 5.500000042957254e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+Inference after training: ... 
+Using model from jsac_results/N_3_3_d_16_16/snr2_100.0/seed_101/weights/gbaf_1xfe_fpn/T_9/pow_1/50000/0.001//K_3_m_3_snr1_-1.0//model_weights120000.pt
+
+GBAF test stats: batch#0, SER 4e-06, numErr 2, num_pkts 5.00e+05
+Time elapsed: 0.0050625443458557125 mins
+
+GBAF test stats: batch#37, SER 5.3158e-06, numErr 101
+Final test SER = 5.315789621818112e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 5.315789621818112e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+
+Time for testing: 0.1981843153635661
+
+Inference using trained model and stats from large dataset: ... 
+
+Using model from jsac_results/N_3_3_d_16_16/snr2_100.0/seed_101/weights/gbaf_1xfe_fpn/T_9/pow_1/50000/0.001//K_3_m_3_snr1_-1.0//model_weights120000.pt
+Using model from jsac_results/N_3_3_d_16_16/snr2_100.0/seed_101/weights/gbaf_1xfe_fpn/T_9/pow_1/50000/0.001//K_3_m_3_snr1_-1.0//model_weights120000.pt
+
+GBAF test stats: batch#0, SER 4e-06, numErr 4, num_pkts 1.00e+06
+Time elapsed: 0.007885730266571045 mins
+
+GBAF test stats: batch#22, SER 4.4348e-06, numErr 102
+Final test SER = 4.4347825678414665e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
+Final test PER = 4.4347825678414665e-06, at SNR1 -1.0, SNR2 100.0 for rate 3/9
