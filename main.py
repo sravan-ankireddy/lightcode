@@ -21,7 +21,7 @@ def ModelAvg(w):
 	return w_avg
 
 class ae_backbone(nn.Module):
-	def __init__(self, arch, mod, input_size, m, d_model, dropout, custom_attn=True, multclass = False, NS_model=0):
+	def __init__(self, arch, mod, input_size, m, d_model, dropout, multclass = False, NS_model=0):
 		super(ae_backbone, self).__init__()
 		self.arch = arch
 		self.mod = mod
@@ -122,11 +122,11 @@ class AE(nn.Module):
 			feature_dim = self.args.T-1
 
 		if args.embedding == True:
-			self.Tmodel = ae_backbone(args.arch, "trx", args.clas+feature_dim, args.m, args.d_model_trx, args.dropout, args.custom_attn,args.multclass, args.enc_NS_model)
+			self.Tmodel = ae_backbone(args.arch, "trx", args.clas+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
 		else:
-			self.Tmodel = ae_backbone(args.arch, "trx", args.m+feature_dim, args.m, args.d_model_trx, args.dropout, args.custom_attn,args.multclass, args.enc_NS_model)
+			self.Tmodel = ae_backbone(args.arch, "trx", args.m+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
 		
-		self.Rmodel = ae_backbone(args.arch, "rec", args.T, args.m, args.d_model_rec, args.dropout, args.custom_attn,args.multclass, args.dec_NS_model)
+		self.Rmodel = ae_backbone(args.arch, "rec", args.T, args.m, args.d_model_rec, args.dropout, args.multclass, args.dec_NS_model)
 		
   		########## Power Reallocation as in deepcode work ###############
 		if self.args.reloc == 1:
@@ -459,7 +459,7 @@ if __name__ == '__main__':
 	folder_str = f"T_{args.T}/pow_{args.reloc}/{args.batchSize}/{args.lr}/"
 	sim_str = f"K_{args.K}_m_{args.m}_snr1_{args.snr1}"
  
-	parent_folder = f"temp/N_{args.enc_NS_model}_{args.dec_NS_model}_d_{args.d_k_trx}_{args.d_k_rec}/snr2_{args.snr2}/seed_{args.seed}"
+	parent_folder = f"jsac_results/N_{args.enc_NS_model}_{args.dec_NS_model}_d_{args.d_k_trx}_{args.d_k_rec}/snr2_{args.snr2}/seed_{args.seed}"
  
 	log_file = f"log_{sim_str}.txt"
 	log_folder = f"{parent_folder}/logs/gbaf_{args.arch}_{args.features}/{folder_str}"
