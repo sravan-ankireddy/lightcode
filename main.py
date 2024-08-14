@@ -4,54 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import optim
 from utils import *
-# from Feature_extractors import FE, ReducedFE
+from Feature_extractors import FE, ReducedFE
 import copy
-from parameters_full_distill import *
+from parameters import *
 import matplotlib.pyplot as plt
 
 import logging
 from tqdm import tqdm
-
-##################### Author @Emre Ozfatura  @ Yulin Shao ###################################################
-
-######################### Inlcluded modules and options #######################################
-#1) Feature extracture 
-#2) Successive decoding option 
-#3) Vector embedding option 
-#4) Belief Modulate
-
-################################# Guideline #####################################
-#Current activation is GELU
-#trainining for 120000 epoch
-
-
-################################## Distributed training approach #######################################################
-class FE_local(nn.Module):
-	def __init__(self, mod, NS_model, input_size, d_model):
-		super(FE_local, self).__init__()
-
-		self.mod = mod
-		self.NS_model = NS_model
-		self.reserve = 3 + 8
-		if self.NS_model == 3:
-			self.FC1 = nn.Linear(input_size, d_model*2, bias=True)
-			self.activation1 = nn.ReLU()
-			self.FC2 = nn.Linear(d_model*2, d_model*2, bias=True)
-			self.activation2 = nn.ReLU()
-			self.FC3 = nn.Linear(d_model*2, d_model*2, bias=True)
-			self.activation3 = nn.ReLU()
-			self.FC4 = nn.Linear(d_model*4, d_model, bias=True)
-
-	def forward(self, src):
-		if self.NS_model == 3:
-
-			x1 = self.FC1(src)
-			x1_c = x1.clone()
-			x1 = self.FC2(self.activation1(x1))
-			x1 = self.FC3(self.activation2(x1))
-			x = self.FC4(torch.cat([x1, -x1_c], dim = 2))
-
-		return x
 
 def ModelAvg(w):
 	w_avg = copy.deepcopy(w[0])
@@ -70,14 +29,36 @@ class ae_backbone(nn.Module):
 		self.m = m
 
 		if arch == "1xfe":
-			self.fe1 = FE_local(mod, NS_model, input_size, d_model)
+			self.fe1 = FE(mod, NS_model, input_size, d_model)
 			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-
+		elif arch == "2xfe":
+			self.fe1 = FE(mod, NS_model, input_size, d_model)
+			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
+			self.fe2 = FE(mod, NS_model, d_model, d_model)
+			self.norm2 = nn.LayerNorm(d_model, eps=1e-5)
+		elif arch == "3xfe":
+			self.fe1 = FE(mod, NS_model, input_size, d_model)
+			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
+			self.fe2 = FE(mod, NS_model, d_model, d_model)
+			self.norm2 = nn.LayerNorm(d_model, eps=1e-5)
+			self.fe3 = FE(mod, NS_model, d_model, d_model)
+			self.norm3 = nn.LayerNorm(d_model, eps=1e-5)
+   
+		elif arch == "linear_enc_1xfe":
+			if mod == "trx":
+				self.fe1 = nn.Linear(input_size, d_model)
+				self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
+			else:
+				self.fe1 = FE(mod, NS_model, input_size, d_model)
+				self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
+		elif arch == "rfe":
+			self.rfe = ReducedFE(mod, NS_model, input_size, d_model)
+			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
    
 		# project to the output space
 		if mod == "trx":
 			d_model_reduced = int(d_model/4)
-			# self.out = nn.Linear(d_model, 1)# This number can be changed
+			#self.out = nn.Linear(d_model, 1)# This number can be changed
 			self.out1 = nn.Linear(d_model, d_model_reduced)
 			self.out2 = nn.Linear(d_model_reduced, 1)
 		else:
@@ -87,11 +68,25 @@ class ae_backbone(nn.Module):
 				self.out = nn.Linear(d_model, 2*m)
 		self.dropout = nn.Dropout(dropout)
 
-	def forward(self, src, mask, pe):
+	def forward(self, src):
 		if self.arch == "1xfe" or "linear_enc_1xfe":
 			enc_out = self.fe1(src)
 			enc_out = self.norm1(enc_out)
-
+		elif self.arch == "2xfe":
+			enc_out = self.fe1(src)
+			enc_out = self.norm1(enc_out)
+			enc_out = self.fe2(enc_out)
+			enc_out = self.norm2(enc_out)
+		elif self.arch == "3xfe":
+			enc_out = self.fe1(src)
+			enc_out = self.norm1(enc_out)
+			enc_out = self.fe2(enc_out)
+			enc_out = self.norm2(enc_out)
+			enc_out = self.fe3(enc_out)
+			enc_out = self.norm3(enc_out)   
+		elif self.arch == "rfe":
+			enc_out = self.rfe(src)
+			enc_out = self.norm1(enc_out)
 
 		if self.mod == "rec":
 			enc_out = self.out(enc_out)
@@ -119,32 +114,26 @@ class AE(nn.Module):
 	def __init__(self, args):
 		super(AE, self).__init__()
 		self.args = args
-		################## We use learnable positional encoder which can be removed later ######################################
-		#self.pe = PositionalEncoder(SeqLen=self.args.K+1, lenWord=args.d_model_trx) # learnable PE
-		self.pe = PositionalEncoder_fixed()
-  
+
+		# choice of input features
 		if self.args.features == "fpn":
 			feature_dim = 2*(self.args.T-1)
 		elif self.args.features == "fy":
 			feature_dim = self.args.T-1
 
-		########################################################################################################################
 		if args.embedding == True:
 			self.Tmodel = ae_backbone(args.arch, "trx", args.clas+feature_dim, args.m, args.d_model_trx, args.dropout, args.custom_attn,args.multclass, args.enc_NS_model)
 		else:
 			self.Tmodel = ae_backbone(args.arch, "trx", args.m+feature_dim, args.m, args.d_model_trx, args.dropout, args.custom_attn,args.multclass, args.enc_NS_model)
 		
 		self.Rmodel = ae_backbone(args.arch, "rec", args.T, args.m, args.d_model_rec, args.dropout, args.custom_attn,args.multclass, args.dec_NS_model)
-		if args.rev_iter > 0: ###################### Here we perform succesive refinement ######################################
-			self.RmodelB = ae_backbone(args.arch, "rec", args.T+args.m, args.m, args.d_model_rec, args.dropout, args.custom_attn,args.multclass, args.dec_NS_model)
-		########## Power Reallocation as in deepcode work ###############
 		
+  		########## Power Reallocation as in deepcode work ###############
 		if self.args.reloc == 1:
 			self.total_power_reloc = Power_reallocate(args)
 
 	def power_constraint(self, inputs, isTraining, train_mean, train_std, idx = 0): # Normalize through batch dimension
-		# this_mean = torch.mean(inputs, 0)
-		# this_std  = torch.std(inputs, 0)
+
 		if isTraining == 1 or train_mean is None:
 			# training
 			this_mean = torch.mean(inputs, 0)   
@@ -158,14 +147,10 @@ class AE(nn.Module):
   
 		return outputs, this_mean.detach(), this_std.detach()
 
-	########### IMPORTANT ##################
-	# We use unmodulated bits at encoder
-	#######################################
 	def forward(self, train_mean, train_std, bVec_md, fwd_noise_par, fb_noise_par, table = None, isTraining = 1):
-		###############################################################################################################################################################
 		combined_noise_par = fwd_noise_par + fb_noise_par # The total noise for parity bits
 		for idx in range(self.args.T): # Go through T interactions
-			# breakpoint()
+
 			if self.args.features == "fpn":
 				if idx == 0: # phase 0 
 					src = torch.cat([bVec_md, torch.zeros(self.args.batchSize, self.args.ell, 2*(self.args.T-1)).to(self.args.device)],dim=2)
@@ -182,7 +167,7 @@ class AE(nn.Module):
 					src = torch.cat([bVec_md, parity_all + combined_noise_par[:,:,:idx], torch.zeros(self.args.batchSize, args.ell, self.args.T-(idx+1) ).to(self.args.device)],dim=2)
 			
 			############# Generate the output ###################################################
-			output = self.Tmodel(src, None, self.pe)
+			output = self.Tmodel(src)
 			parity, x_mean, x_std = self.power_constraint(output, isTraining, train_mean, train_std, idx)
 
 			if self.args.reloc == 1:
@@ -198,22 +183,9 @@ class AE(nn.Module):
 				received = torch.cat([received, parity + fwd_noise_par[:,:,idx].unsqueeze(-1)], dim = 2)
 				x_mean_total = torch.cat([x_mean_total, x_mean], dim = 0)
 				x_std_total = torch.cat([x_std_total, x_std], dim = 0)
-		# breakpoint()
-		# ------------------------------------------------------------ receiver
-		#print(received.shape)
-		decSeq = self.Rmodel(received, None, self.pe) # Decode the sequence
-		if args.rev_iter > 0:
-			for i in range (args.rev_iter):
-				if args.belief_modulate == True: # Modulate belief to align with the transmitted symbol power
-					belief = 2*torch.matmul(decSeq, table)-1
-				else:
-					belief = torch.matmul(decSeq, table)
-				received_wp = torch.cat([received,belief],dim=2)# received with prior
-				decseq = self.RmodelB(received_wp, None, self.pe)
-		
-		return decSeq, x_mean_total, x_std_total
 
-############################################################################################################################################################################
+		decSeq = self.Rmodel(received) # Decode the sequence        
+		return decSeq, x_mean_total, x_std_total
 
 def train_model(model, args, logging):
 	print("-->-->-->-->-->-->-->-->-->--> start training ...")
@@ -249,10 +221,8 @@ def train_model(model, args, logging):
 			for i in range(args.clas):
 				mask = (bVec == i).long()
 				bVec_md= bVec_md + (mask * Embed[i,:,:,:])
-		#################################### Generate noise sequence ##################################################
-		###############################################################################################################
-		###############################################################################################################
-		################################### Curriculum learning strategy ##############################################
+
+		# Curriculum learning strategy 
 		snr2=args.snr2
 		if eachbatch < 0:#args.core * 30000:
 			snr1=4* (1-eachbatch/(args.core * 30000))+ (eachbatch/(args.core * 30000)) * args.snr1
@@ -276,7 +246,7 @@ def train_model(model, args, logging):
 
 		# feed into model to get predictions
 		preds, batch_mean, batch_std = model(None, None, bVec_md.to(args.device), fwd_noise_par.to(args.device), fb_noise_par.to(args.device), A_blocks.to(args.device), isTraining=1)
-		# breakpoint()
+
 		if batch_mean is not None:
 			train_mean += batch_mean
 			train_std += batch_std # not the best way but numerically stable
@@ -295,8 +265,8 @@ def train_model(model, args, logging):
 			ys = bVec.long().contiguous().view(-1)
 		preds = preds.contiguous().view(-1, preds.size(-1)) #=> (Batch*K) x 2
 		preds = torch.log(preds)
-		# breakpoint()
-		loss = F.nll_loss(preds, ys.to(args.device))########################## This should be binary cross-entropy loss
+
+		loss = F.nll_loss(preds, ys.to(args.device))
 		loss.backward()
 		####################### Gradient Clipping optional ###########################
 		torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip_th)
@@ -316,10 +286,8 @@ def train_model(model, args, logging):
 			if args.use_lr_schedule:
 				args.scheduler.step()
 		################################ Observe test accuracy ##############################
-		if eachbatch%5000 == 0:
+		if eachbatch%10000 == 0:
 			with torch.no_grad():
-				# probs, decodeds = preds.max(dim=1)
-				# succRate = sum(decodeds == ys.to(args.device)) / len(ys)
 				print(f"\nGBAF train stats: batch#{eachbatch}, lr {args.lr}, snr1 {snr1}, snr2 {snr2}, BS {args.batchSize}, Loss {round(loss.item(), 8)}")
 				logging.info(f"\nGBAF train stats: batch#{eachbatch}, lr {args.lr}, snr1 {snr1}, snr2 {snr2}, BS {args.batchSize}, Loss {round(loss.item(), 8)}")		
    
@@ -333,13 +301,13 @@ def train_model(model, args, logging):
 				print("... finished testing")
 	
 		####################################################################################
-		if np.mod(eachbatch, args.core * 5000) == args.core - 1:
+		if np.mod(eachbatch, args.core * 10000) == args.core - 1:
 			epoch_loss_record.append(loss.item())
 			if not os.path.exists(weights_folder):
 				os.mkdir(weights_folder)
 			torch.save(epoch_loss_record, f'{weights_folder}/loss')
 
-		if np.mod(eachbatch, args.core * 5000) == args.core - 1:# and eachbatch >= 80000:
+		if np.mod(eachbatch, args.core * 10000) == args.core - 1:# and eachbatch >= 80000:
 			if not os.path.exists(weights_folder):
 				os.mkdir(weights_folder)
 			saveDir = f'{weights_folder}/model_weights' + str(eachbatch) + '.pt'
@@ -388,7 +356,7 @@ def EvaluateNets(model, train_mean, train_std, args, logging):
 			else:
 				embed[j] = torch.sum(torch.abs(A_blocks[i,:]-A_blocks[j,:]))
 		Embed[i,:,:,:]= embed.repeat(args.batchSize, args.ell, 1)
-	# failbits = torch.zeros(args.K).to(args.device)
+
 	symErrors = 0
 	pktErrors = 0
  
@@ -424,7 +392,7 @@ def EvaluateNets(model, train_mean, train_std, args, logging):
 			else:
 				ys = bVec.long().contiguous().view(-1)
 			preds1 =  preds.contiguous().view(-1, preds.size(-1))
-			#print(preds1.shape)
+
 			probs, decodeds = preds1.max(dim=1)
 			decisions = decodeds != ys.to(args.device)
 			symErrors += decisions.sum()
@@ -448,7 +416,7 @@ def EvaluateNets(model, train_mean, train_std, args, logging):
 				print(f"\nGBAF test stats: batch#{eachbatch}, SER {round(SER.item(), 10)}, numErr {symErrors.item()}")
 				logging.info(f"\nGBAF test stats: batch#{eachbatch}, SER {round(SER.item(), 10)}, numErr {symErrors.item()}")
 				break
-	# breakpoint()
+
 	SER = symErrors.cpu() / (num_batches_ran * args.batchSize * args.ell)
 	PER = pktErrors.cpu() / (num_batches_ran * args.batchSize)
 	print(SER)
@@ -462,7 +430,6 @@ def EvaluateNets(model, train_mean, train_std, args, logging):
 if __name__ == '__main__':
 	# ======================================================= parse args
 	args = args_parser()
-	#args.device = 'cuda:1' if torch.cuda.is_available() else 'cpu'
 	########### path for saving model checkpoints ################################
 	args.saveDir = f'weights/model_weights{args.totalbatch-101}.pt'  # path to be saved to
 	################## Model size part ###########################################
@@ -492,8 +459,7 @@ if __name__ == '__main__':
 	folder_str = f"T_{args.T}/pow_{args.reloc}/{args.batchSize}/{args.lr}/"
 	sim_str = f"K_{args.K}_m_{args.m}_snr1_{args.snr1}"
  
-	parent_folder = f"jsac_results_final/{args.act}/N_{args.enc_NS_model}_{args.dec_NS_model}_d_{args.d_k_trx}_{args.d_k_rec}/snr2_{args.snr2}/seed_{args.seed}"
-	# parent_folder = "temp"
+	parent_folder = f"temp/N_{args.enc_NS_model}_{args.dec_NS_model}_d_{args.d_k_trx}_{args.d_k_rec}/snr2_{args.snr2}/seed_{args.seed}"
  
 	log_file = f"log_{sim_str}.txt"
 	log_folder = f"{parent_folder}/logs/gbaf_{args.arch}_{args.features}/{folder_str}"
@@ -518,14 +484,6 @@ if __name__ == '__main__':
 		if args.use_lr_schedule:
 			lambda1 = lambda epoch: (1-epoch/args.totalbatch)
 			args.scheduler = torch.optim.lr_scheduler.LambdaLR(args.optimizer, lr_lambda=lambda1)
-			######################## huggingface library ####################################################
-			#args.scheduler = get_polynomial_decay_schedule_with_warmup(optimizer=args.optimizer, warmup_steps=1000, num_training_steps=args.totalbatch, power=0.5)
-
-
-		if 0:
-			checkpoint = torch.load(args.saveDir)
-			model.load_state_dict(checkpoint)
-			print("================================ Successfully load the pretrained data!")
 
 		# print the model summary
 		print(model)
@@ -611,16 +569,9 @@ if __name__ == '__main__':
 	if args.snr2 == 100:
 		fb_noise_par = 0* fb_noise_par
 
-	inf_start_time = time.time()
 	# feed into model to get predictions
 	with torch.no_grad():
 		preds, train_mean, train_std = model(None, None, bVec_md.to(args.device), fwd_noise_par.to(args.device), fb_noise_par.to(args.device), A_blocks.to(args.device), isTraining=0)
-	inf_end_time = time.time()
-	inf_time_secs = (inf_end_time - inf_start_time)
- 
-	# print the inference time
-	print(f"Time to decode {large_bs} samples: {inf_time_secs} seconds")
-  
-	# breakpoint()
+
 	# args.batchSize = int(args.batchSize*10)
 	EvaluateNets(model, train_mean, train_std, args, logging)

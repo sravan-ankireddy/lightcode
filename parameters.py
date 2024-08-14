@@ -1,6 +1,6 @@
 import argparse
 
-device = 'cuda:1'
+device = 'cuda:0'
 
 K = 3
 m = 3
@@ -21,24 +21,17 @@ elif T == 5:
     snr1 = 3.0
 
 # snr1 = snr1 + 1.0
-# snr1 = -1.0
-
-# snr1 = 0.0
-# snr2 = 20.0
-
-# snr1 = -1.0
+snr1 = -1.0
 snr2 = 100.0
-
 # # snr1 = 0.0
 
 train = 1
 
-seed = 111
-arch = "1xfe" #3xfe
+seed = 101
+arch = "3xfe" #3xfe
 features = "fy" # fy/fpn
-activation = "relu" # selu/relu
 # batchSize = int(8192*10)
-batchSize = int(1e5)
+batchSize = int(50000)
 
 def args_parser():
     parser = argparse.ArgumentParser()
@@ -58,11 +51,10 @@ def args_parser():
     parser.add_argument('--arch', type=str, default=arch)
     parser.add_argument('--seed', type=int, default=seed)
     parser.add_argument('--features', type=str, default=features)
-    parser.add_argument('--act', type=str, default=activation)
 
     # Transformer arguments
-    parser.add_argument('--d_k_trx', type=int, default=16, help="number of features for each head")
-    parser.add_argument('--d_k_rec', type=int, default=16, help="number of features for each head")
+    parser.add_argument('--d_k_trx', type=int, default=4, help="number of features for each head")
+    parser.add_argument('--d_k_rec', type=int, default=4, help="number of features for each head")
     parser.add_argument('--dropout', type=float, default=0.0, help="prob of dropout")
     parser.add_argument('--custom_attn', type=bool, default = True, help= "use custom attention")
     parser.add_argument('--vv', type=int, default=1)
