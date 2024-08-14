@@ -1,4 +1,4 @@
-# DeepPolar codes
+# LightCode
 Code for "[LightCode: Light Analytical and Neural Codes for Channels with Feedback](https://arxiv.org/pdf/2403.10751)"
 
 ## Installation
