@@ -35,3 +35,6 @@ python -u main.py
 - `features`: choice of inputs to feature extractor
 - `seed`: random seed (for reproducibility)
 - `device` : cpu / 'cuda:0'
+
+
+Our implementation is largely based on "[generalized block attention feedback (GBAF) ](https://github.com/emre1925/GBAF)." We thank the authors for open sourcing their code. 
