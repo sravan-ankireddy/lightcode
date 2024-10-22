@@ -7,7 +7,7 @@ First, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/sravan-ankireddy/lightcode.git
-cd deeppolar
+cd lightcode
 ```
 
 Then, install the required Python packages:
