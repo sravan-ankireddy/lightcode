@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch import optim
 from utils import *
-from Feature_extractors import FE, ReducedFE
+from Feature_extractors import FE
 import copy
 from parameters import *
 import matplotlib.pyplot as plt
@@ -21,78 +21,36 @@ def ModelAvg(w):
 	return w_avg
 
 class ae_backbone(nn.Module):
-	def __init__(self, arch, mod, input_size, m, d_model, dropout, multclass = False, NS_model=0):
+	def __init__(self, mod, input_size, m, d_model, dropout, multclass = False, NS_model=0):
 		super(ae_backbone, self).__init__()
-		self.arch = arch
 		self.mod = mod
 		self.multclass = multclass
 		self.m = m
 
-		if arch == "1xfe":
-			self.fe1 = FE(mod, NS_model, input_size, d_model)
-			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-		elif arch == "2xfe":
-			self.fe1 = FE(mod, NS_model, input_size, d_model)
-			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-			self.fe2 = FE(mod, NS_model, d_model, d_model)
-			self.norm2 = nn.LayerNorm(d_model, eps=1e-5)
-		elif arch == "3xfe":
-			self.fe1 = FE(mod, NS_model, input_size, d_model)
-			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-			self.fe2 = FE(mod, NS_model, d_model, d_model)
-			self.norm2 = nn.LayerNorm(d_model, eps=1e-5)
-			self.fe3 = FE(mod, NS_model, d_model, d_model)
-			self.norm3 = nn.LayerNorm(d_model, eps=1e-5)
-   
-		elif arch == "linear_enc_1xfe":
-			if mod == "trx":
-				self.fe1 = nn.Linear(input_size, d_model)
-				self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-			else:
-				self.fe1 = FE(mod, NS_model, input_size, d_model)
-				self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
-		elif arch == "rfe":
-			self.rfe = ReducedFE(mod, NS_model, input_size, d_model)
-			self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
+		self.fe1 = FE(mod, NS_model, input_size, d_model)
+		self.norm1 = nn.LayerNorm(d_model, eps=1e-5)
    
 		# project to the output space
 		if mod == "trx":
-			d_model_reduced = int(d_model/4)
-			#self.out = nn.Linear(d_model, 1)# This number can be changed
-			self.out1 = nn.Linear(d_model, d_model_reduced)
-			self.out2 = nn.Linear(d_model_reduced, 1)
+			self.out = nn.Linear(d_model, 1)
 		else:
 			if multclass:
-				self.out = nn.Linear(d_model, 2**m)
+				self.out1 = nn.Linear(d_model, d_model)
+				self.out2 = nn.Linear(d_model, 2**m)
 			else:
-				self.out = nn.Linear(d_model, 2*m)
+				self.out1 = nn.Linear(d_model, d_model)
+				self.out2 = nn.Linear(d_model, 2*m)
 		self.dropout = nn.Dropout(dropout)
 
 	def forward(self, src):
-		if self.arch == "1xfe" or "linear_enc_1xfe":
-			enc_out = self.fe1(src)
-			enc_out = self.norm1(enc_out)
-		elif self.arch == "2xfe":
-			enc_out = self.fe1(src)
-			enc_out = self.norm1(enc_out)
-			enc_out = self.fe2(enc_out)
-			enc_out = self.norm2(enc_out)
-		elif self.arch == "3xfe":
-			enc_out = self.fe1(src)
-			enc_out = self.norm1(enc_out)
-			enc_out = self.fe2(enc_out)
-			enc_out = self.norm2(enc_out)
-			enc_out = self.fe3(enc_out)
-			enc_out = self.norm3(enc_out)   
-		elif self.arch == "rfe":
-			enc_out = self.rfe(src)
-			enc_out = self.norm1(enc_out)
-
+		enc_out = self.fe1(src)
+		enc_out = self.norm1(enc_out)
+		
 		if self.mod == "rec":
-			enc_out = self.out(enc_out)
-		else:
 			enc_out = self.out1(enc_out)
 			enc_out = self.out2(enc_out)
+		else:
+			enc_out = self.out(enc_out)
    
 		if self.mod == "rec":
 			if self.multclass == False:
@@ -122,11 +80,11 @@ class AE(nn.Module):
 			feature_dim = self.args.T-1
 
 		if args.embedding == True:
-			self.Tmodel = ae_backbone(args.arch, "trx", args.clas+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
+			self.Tmodel = ae_backbone("trx", args.clas+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
 		else:
-			self.Tmodel = ae_backbone(args.arch, "trx", args.m+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
+			self.Tmodel = ae_backbone("trx", args.m+feature_dim, args.m, args.d_model_trx, args.dropout,args.multclass, args.enc_NS_model)
 		
-		self.Rmodel = ae_backbone(args.arch, "rec", args.T, args.m, args.d_model_rec, args.dropout, args.multclass, args.dec_NS_model)
+		self.Rmodel = ae_backbone("rec", args.T, args.m, args.d_model_rec, args.dropout, args.multclass, args.dec_NS_model)
 		
   		########## Power Reallocation as in deepcode work ###############
 		if self.args.reloc == 1:
@@ -332,7 +290,7 @@ def train_model(model, args, logging):
 def EvaluateNets(model, train_mean, train_std, args, logging):
 	if args.train == 0:
 		
-		path = f'{weights_folder}/model_weights{args.totalbatch-101}.pt'
+		path = f'{weights_folder}/model_weights{args.totalbatch-1}.pt'
 		print(f"Using model from {path}")
 		logging.info(f"Using model from {path}")
 	
@@ -454,7 +412,7 @@ if __name__ == '__main__':
  
 	# ======================================================= Initialize the model
 	model = AE(args).to(args.device)
-  
+
 	# configure the logging
 	folder_str = f"T_{args.T}/pow_{args.reloc}/{args.batchSize}/{args.lr}/"
 	sim_str = f"K_{args.K}_m_{args.m}_snr1_{args.snr1}"
@@ -462,14 +420,14 @@ if __name__ == '__main__':
 	parent_folder = f"jsac_results/N_{args.enc_NS_model}_{args.dec_NS_model}_d_{args.d_k_trx}_{args.d_k_rec}/snr2_{args.snr2}/seed_{args.seed}"
  
 	log_file = f"log_{sim_str}.txt"
-	log_folder = f"{parent_folder}/logs/gbaf_{args.arch}_{args.features}/{folder_str}"
+	log_folder = f"{parent_folder}/logs/gbaf_{args.features}/{folder_str}"
 	log_file_name = os.path.join(log_folder, log_file)
  
 	os.makedirs(log_folder, exist_ok=True)
 	logging.basicConfig(format='%(message)s', filename=log_file_name, encoding='utf-8', level=logging.INFO)
 
 	global weights_folder
-	weights_folder = f"{parent_folder}/weights/gbaf_{args.arch}_{args.features}/{folder_str}/{sim_str}/"
+	weights_folder = f"{parent_folder}/weights/gbaf_{args.features}/{folder_str}/{sim_str}/"
 	os.makedirs(weights_folder, exist_ok=True)
 
 
@@ -524,7 +482,7 @@ if __name__ == '__main__':
 	print("\nInference using trained model and stats from large dataset: ... ")
 	logging.info("\nInference using trained model and stats from large dataset: ... ")
 
-	path = f'{weights_folder}/model_weights{args.totalbatch-101}.pt'
+	path = f'{weights_folder}/model_weights{args.totalbatch-1}.pt'
 	print(f"\nUsing model from {path}")
 	logging.info(f"\nUsing model from {path}")
  

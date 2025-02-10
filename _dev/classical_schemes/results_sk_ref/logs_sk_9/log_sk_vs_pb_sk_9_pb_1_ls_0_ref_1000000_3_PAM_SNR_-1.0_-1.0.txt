@@ -1,0 +1,38 @@
+Simulating 1000000 blocks per SNR : 3 bits, 1 symbols
+
+Elapsed time: 1.8433513719999999 seconds
+SNRdB -1.0, MAP decoding after 8 rounds of SK: Prob(error mag. > 1): 0.0, Prob(error mag. > 2): 0.0, Prob(error mag. > 3): 0.0
+SNRdB -1.0, Empirical SER after 8 rounds of SK + 1 rounds of power blast: 0.000501
+SNRdB -1.0, Empirical BLER after 8 rounds of SK + 1 rounds of power blast: 0.000501
+Time taken : 
+4.280112875
+
+BER after 9 rounds of SK: 
+
+array([0.00221433])
+
+After 9 rounds of SK - SER : 
+
+array([0.004233])
+
+After 8 rounds of SK - SER : 
+
+array([0.022682])
+
+After 7 rounds of SK - SER : 
+
+array([0.081294])
+
+ Ran 1000000 blocks per SNR point
+
+After 8 rounds of SK + 1 round of power blast - empirical SER : 
+
+array([[0.000501]])
+
+After 8 rounds of SK + 1 round of power blast - theoretical SER : 
+
+array([[0.0005117]])
+Simulating 1000000 blocks per SNR : 3 bits, 1 symbols
+
+Simulating 1000000 blocks per SNR : 3 bits, 1 symbols
+

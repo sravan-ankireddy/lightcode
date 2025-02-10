@@ -1,0 +1,1351 @@
+AE(
+  (Tmodel): ae_backbone(
+    (fe1): FE(
+      (FC1): Linear(in_features=10, out_features=32, bias=True)
+      (activation1): ReLU()
+      (FC2): Linear(in_features=32, out_features=32, bias=True)
+      (activation2): ReLU()
+      (FC3): Linear(in_features=32, out_features=32, bias=True)
+      (FC4): Linear(in_features=64, out_features=16, bias=True)
+    )
+    (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+    (out): Linear(in_features=16, out_features=1, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+  )
+  (Rmodel): ae_backbone(
+    (fe1): FE(
+      (FC1): Linear(in_features=8, out_features=32, bias=True)
+      (activation1): ReLU()
+      (FC2): Linear(in_features=32, out_features=32, bias=True)
+      (activation2): ReLU()
+      (FC3): Linear(in_features=32, out_features=32, bias=True)
+      (FC4): Linear(in_features=64, out_features=16, bias=True)
+    )
+    (norm1): LayerNorm((16,), eps=1e-05, elementwise_affine=True)
+    (out1): Linear(in_features=16, out_features=16, bias=True)
+    (out2): Linear(in_features=16, out_features=8, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+  )
+  (total_power_reloc): Power_reallocate()
+)
+Total number of trainable parameters: 7442
+Total number of trainable parameters in Tmodel: 3553
+Total number of trainable parameters in Rmodel: 3880
+-->-->-->-->-->-->-->-->-->--> start training ...
+
+GBAF train stats: batch#0, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 2.15043664
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.8353679776, numErr 835368, num_pkts 1.00e+06
+Time elapsed: 0.0033305446306864423 mins
+
+GBAF test stats: batch#0, SER 0.8353679776, numErr 835368
+Final test SER = 0.8353679776191711, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.8353679776191711, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#10000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 0.03424606
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0123939998, numErr 12394, num_pkts 1.00e+06
+Time elapsed: 0.0038719813028971354 mins
+
+GBAF test stats: batch#0, SER 0.0123939998, numErr 12394
+Final test SER = 0.012393999844789505, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.012393999844789505, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#20000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 0.01423476
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0052410001, numErr 5241, num_pkts 1.00e+06
+Time elapsed: 0.002834769090016683 mins
+
+GBAF test stats: batch#0, SER 0.0052410001, numErr 5241
+Final test SER = 0.005241000093519688, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.005241000093519688, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#30000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 6.215e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 2e-05, numErr 20, num_pkts 1.00e+06
+Time elapsed: 0.003081162770589193 mins
+
+GBAF test stats: batch#1, SER 2.2e-05, numErr 44
+Final test SER = 2.2000000171829015e-05, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 2.2000000171829015e-05, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#40000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 1.885e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 3e-06, numErr 3, num_pkts 1.00e+06
+Time elapsed: 0.003141335646311442 mins
+
+GBAF test stats: batch#3, SER 7.25e-06, numErr 29
+Final test SER = 7.250000180647476e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 7.250000180647476e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#50000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 2.73e-06
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0036867380142211912 mins
+
+GBAF test stats: batch#13, SER 1.5e-06, numErr 21
+Final test SER = 1.500000053056283e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 1.500000053056283e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#60000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 1.262e-05
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 4e-06, numErr 4, num_pkts 1.00e+06
+Time elapsed: 0.0034997622172037762 mins
+
+GBAF test stats: batch#3, SER 6.75e-06, numErr 27
+Final test SER = 6.750000011379598e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 6.750000011379598e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#70000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 2.8e-07
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0035826762517293296 mins
+
+GBAF test stats: batch#44, SER 4.667e-07, numErr 21
+Final test SER = 4.6666667685713037e-07, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 4.6666667685713037e-07, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#80000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 1.15e-06
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 2e-06, numErr 2, num_pkts 1.00e+06
+Time elapsed: 0.0031340360641479493 mins
+
+GBAF test stats: batch#15, SER 1.3125e-06, numErr 21
+Final test SER = 1.3124999895808287e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 1.3124999895808287e-06, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#90000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 5e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.002409478028615316 mins
+
+GBAF test stats: batch#100, SER 1.98e-08, numErr 2
+Final test SER = 1.9801980499778438e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 1.9801980499778438e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#100000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 6e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.002709102630615234 mins
+
+GBAF test stats: batch#100, SER 2.97e-08, numErr 3
+Final test SER = 2.9702970749667656e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 2.9702970749667656e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#110000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 6e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0026144544283548993 mins
+
+GBAF test stats: batch#100, SER 3.96e-08, numErr 4
+Final test SER = 3.9603960999556875e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 3.9603960999556875e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#120000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 3e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.003330822785695394 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#130000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 3e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.002483956019083659 mins
+
+GBAF test stats: batch#100, SER 9.9e-09, numErr 1
+Final test SER = 9.900990249889219e-09, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 9.900990249889219e-09, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#140000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 2e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0027580738067626955 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#150000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 3e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0038688143094380697 mins
+
+GBAF test stats: batch#100, SER 3.96e-08, numErr 4
+Final test SER = 3.9603960999556875e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 3.9603960999556875e-08, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#160000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 1e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0033907055854797362 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#170000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 1e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.00264362096786499 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#180000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 2e-08
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.003048125902811686 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#190000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 0.0
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.002630015214284261 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+GBAF train stats: batch#200000, lr 0.001, snr1 0.0, snr2 100.0, BS 100000, Loss 0.0
+Testing started: ... 
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0025861223538716635 mins
+
+GBAF test stats: batch#100, SER 0.0, numErr 0
+Final test SER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+Final test PER = 0.0, at SNR1 0.0, SNR2 100.0 for rate 3/8
+
+Inference after training: ... 
+Using model from jsac_results_e1d2/N_3_3_d_16_16/snr2_100.0/seed_101/weights/gbaf_fy/T_8/pow_1/100000/0.001//K_3_m_3_snr1_0.0//model_weights200000.pt
+
+GBAF test stats: batch#0, SER 0.0, numErr 0, num_pkts 1.00e+06
+Time elapsed: 0.0037435134251912433 mins
+
+GBAF test stats: batch#1000, SER 0.0, numErr 0, num_pkts 1.00e+09
+Time elapsed: 2.952838957309723 mins
+
+GBAF test stats: batch#2000, SER 0.0, numErr 0, num_pkts 2.00e+09
+Time elapsed: 5.913335172335307 mins
+
+GBAF test stats: batch#3000, SER 0.0, numErr 0, num_pkts 3.00e+09
+Time elapsed: 8.836247316996257 mins
+
+GBAF test stats: batch#4000, SER 0.0, numErr 0, num_pkts 4.00e+09
+Time elapsed: 11.7832146525383 mins
+
+GBAF test stats: batch#5000, SER 0.0, numErr 0, num_pkts 5.00e+09
+Time elapsed: 14.723622127374012 mins
+
+GBAF test stats: batch#6000, SER 0.0, numErr 0, num_pkts 6.00e+09
+Time elapsed: 17.654408967494966 mins
+
+GBAF test stats: batch#7000, SER 0.0, numErr 0, num_pkts 7.00e+09
+Time elapsed: 20.597008009751637 mins
+
+GBAF test stats: batch#8000, SER 0.0, numErr 0, num_pkts 8.00e+09
+Time elapsed: 23.519017259279888 mins
+
+GBAF test stats: batch#9000, SER 0.0, numErr 0, num_pkts 9.00e+09
+Time elapsed: 26.468446977933247 mins
+
+GBAF test stats: batch#10000, SER 0.0, numErr 0, num_pkts 1.00e+10
+Time elapsed: 29.419130436579387 mins
+
+GBAF test stats: batch#11000, SER 0.0, numErr 0, num_pkts 1.10e+10
+Time elapsed: 32.35889617204666 mins
+
+GBAF test stats: batch#12000, SER 0.0, numErr 0, num_pkts 1.20e+10
+Time elapsed: 35.30566354195277 mins
+
+GBAF test stats: batch#13000, SER 0.0, numErr 0, num_pkts 1.30e+10
+Time elapsed: 38.23479534784953 mins
+
+GBAF test stats: batch#14000, SER 0.0, numErr 0, num_pkts 1.40e+10
+Time elapsed: 41.184172519048055 mins
+
+GBAF test stats: batch#15000, SER 0.0, numErr 0, num_pkts 1.50e+10
+Time elapsed: 44.12516860167185 mins
+
+GBAF test stats: batch#16000, SER 0.0, numErr 0, num_pkts 1.60e+10
+Time elapsed: 47.083695181210835 mins
+
+GBAF test stats: batch#17000, SER 0.0, numErr 0, num_pkts 1.70e+10
+Time elapsed: 50.039112667242684 mins
+
+GBAF test stats: batch#18000, SER 1e-10, numErr 2, num_pkts 1.80e+10
+Time elapsed: 52.98009250164032 mins
+
+GBAF test stats: batch#19000, SER 1e-10, numErr 2, num_pkts 1.90e+10
+Time elapsed: 55.91095697879791 mins
+
+GBAF test stats: batch#20000, SER 1e-10, numErr 2, num_pkts 2.00e+10
+Time elapsed: 58.93249465624491 mins
+
+GBAF test stats: batch#21000, SER 1e-10, numErr 3, num_pkts 2.10e+10
+Time elapsed: 63.368195255597435 mins
+
+GBAF test stats: batch#22000, SER 1e-10, numErr 3, num_pkts 2.20e+10
+Time elapsed: 67.99180357853571 mins
+
+GBAF test stats: batch#23000, SER 1e-10, numErr 3, num_pkts 2.30e+10
+Time elapsed: 72.62402836879095 mins
+
+GBAF test stats: batch#24000, SER 1e-10, numErr 3, num_pkts 2.40e+10
+Time elapsed: 77.2475278933843 mins
+
+GBAF test stats: batch#25000, SER 1e-10, numErr 3, num_pkts 2.50e+10
+Time elapsed: 81.86019840240479 mins
+
+GBAF test stats: batch#26000, SER 1e-10, numErr 3, num_pkts 2.60e+10
+Time elapsed: 86.50261634190878 mins
+
+GBAF test stats: batch#27000, SER 1e-10, numErr 3, num_pkts 2.70e+10
+Time elapsed: 91.12459221283595 mins
+
+GBAF test stats: batch#28000, SER 1e-10, numErr 4, num_pkts 2.80e+10
+Time elapsed: 95.74865107138952 mins
+
+GBAF test stats: batch#29000, SER 1e-10, numErr 4, num_pkts 2.90e+10
+Time elapsed: 100.38412290811539 mins
+
+GBAF test stats: batch#30000, SER 2e-10, numErr 5, num_pkts 3.00e+10
+Time elapsed: 105.00820015668869 mins
+
+GBAF test stats: batch#31000, SER 2e-10, numErr 5, num_pkts 3.10e+10
+Time elapsed: 109.66143126885096 mins
+
+GBAF test stats: batch#32000, SER 2e-10, numErr 5, num_pkts 3.20e+10
+Time elapsed: 114.29569311141968 mins
+
+GBAF test stats: batch#33000, SER 2e-10, numErr 5, num_pkts 3.30e+10
+Time elapsed: 118.92504942019781 mins
+
+GBAF test stats: batch#34000, SER 2e-10, numErr 6, num_pkts 3.40e+10
+Time elapsed: 123.53653549353281 mins
+
+GBAF test stats: batch#35000, SER 2e-10, numErr 6, num_pkts 3.50e+10
+Time elapsed: 128.15490918159486 mins
+
+GBAF test stats: batch#36000, SER 2e-10, numErr 6, num_pkts 3.60e+10
+Time elapsed: 132.7817068417867 mins
+
+GBAF test stats: batch#37000, SER 2e-10, numErr 6, num_pkts 3.70e+10
+Time elapsed: 137.39567968845367 mins
+
+GBAF test stats: batch#38000, SER 2e-10, numErr 6, num_pkts 3.80e+10
+Time elapsed: 142.00462394952774 mins
+
+GBAF test stats: batch#39000, SER 2e-10, numErr 6, num_pkts 3.90e+10
+Time elapsed: 146.62183690865834 mins
+
+GBAF test stats: batch#40000, SER 1e-10, numErr 6, num_pkts 4.00e+10
+Time elapsed: 151.23716591199238 mins
+
+GBAF test stats: batch#41000, SER 1e-10, numErr 6, num_pkts 4.10e+10
+Time elapsed: 155.84701279004415 mins
+
+GBAF test stats: batch#42000, SER 1e-10, numErr 6, num_pkts 4.20e+10
+Time elapsed: 160.4907100280126 mins
+
+GBAF test stats: batch#43000, SER 1e-10, numErr 6, num_pkts 4.30e+10
+Time elapsed: 165.09923465251921 mins
+
+GBAF test stats: batch#44000, SER 2e-10, numErr 7, num_pkts 4.40e+10
+Time elapsed: 169.73988674084345 mins
+
+GBAF test stats: batch#45000, SER 2e-10, numErr 8, num_pkts 4.50e+10
+Time elapsed: 174.381111907959 mins
+
+GBAF test stats: batch#46000, SER 2e-10, numErr 8, num_pkts 4.60e+10
+Time elapsed: 178.98904289007186 mins
+
+GBAF test stats: batch#47000, SER 2e-10, numErr 8, num_pkts 4.70e+10
+Time elapsed: 183.64120343923568 mins
+
+GBAF test stats: batch#48000, SER 2e-10, numErr 8, num_pkts 4.80e+10
+Time elapsed: 188.26768774986266 mins
+
+GBAF test stats: batch#49000, SER 2e-10, numErr 8, num_pkts 4.90e+10
+Time elapsed: 192.89103788932164 mins
+
+GBAF test stats: batch#50000, SER 2e-10, numErr 8, num_pkts 5.00e+10
+Time elapsed: 197.55173030296962 mins
+
+GBAF test stats: batch#51000, SER 2e-10, numErr 8, num_pkts 5.10e+10
+Time elapsed: 202.1975812236468 mins
+
+GBAF test stats: batch#52000, SER 2e-10, numErr 8, num_pkts 5.20e+10
+Time elapsed: 206.8290990948677 mins
+
+GBAF test stats: batch#53000, SER 2e-10, numErr 8, num_pkts 5.30e+10
+Time elapsed: 211.44996665716172 mins
+
+GBAF test stats: batch#54000, SER 2e-10, numErr 9, num_pkts 5.40e+10
+Time elapsed: 216.05042761564255 mins
+
+GBAF test stats: batch#55000, SER 2e-10, numErr 9, num_pkts 5.50e+10
+Time elapsed: 220.67260214090348 mins
+
+GBAF test stats: batch#56000, SER 2e-10, numErr 9, num_pkts 5.60e+10
+Time elapsed: 225.319697368145 mins
+
+GBAF test stats: batch#57000, SER 2e-10, numErr 9, num_pkts 5.70e+10
+Time elapsed: 229.96948333183926 mins
+
+GBAF test stats: batch#58000, SER 2e-10, numErr 11, num_pkts 5.80e+10
+Time elapsed: 234.60219223101933 mins
+
+GBAF test stats: batch#59000, SER 2e-10, numErr 12, num_pkts 5.90e+10
+Time elapsed: 239.21908243497214 mins
+
+GBAF test stats: batch#60000, SER 2e-10, numErr 12, num_pkts 6.00e+10
+Time elapsed: 243.85841325124105 mins
+
+GBAF test stats: batch#61000, SER 2e-10, numErr 12, num_pkts 6.10e+10
+Time elapsed: 248.49136544068654 mins
+
+GBAF test stats: batch#62000, SER 2e-10, numErr 12, num_pkts 6.20e+10
+Time elapsed: 253.08967840274175 mins
+
+GBAF test stats: batch#63000, SER 2e-10, numErr 12, num_pkts 6.30e+10
+Time elapsed: 257.710386121273 mins
+
+GBAF test stats: batch#64000, SER 2e-10, numErr 12, num_pkts 6.40e+10
+Time elapsed: 262.3371322512627 mins
+
+GBAF test stats: batch#65000, SER 2e-10, numErr 12, num_pkts 6.50e+10
+Time elapsed: 266.94396636486056 mins
+
+GBAF test stats: batch#66000, SER 2e-10, numErr 12, num_pkts 6.60e+10
+Time elapsed: 271.5786029934883 mins
+
+GBAF test stats: batch#67000, SER 2e-10, numErr 12, num_pkts 6.70e+10
+Time elapsed: 276.20218582550683 mins
+
+GBAF test stats: batch#68000, SER 2e-10, numErr 12, num_pkts 6.80e+10
+Time elapsed: 280.8386107246081 mins
+
+GBAF test stats: batch#69000, SER 2e-10, numErr 12, num_pkts 6.90e+10
+Time elapsed: 285.4628227631251 mins
+
+GBAF test stats: batch#70000, SER 2e-10, numErr 12, num_pkts 7.00e+10
+Time elapsed: 290.0795638362567 mins
+
+GBAF test stats: batch#71000, SER 2e-10, numErr 13, num_pkts 7.10e+10
+Time elapsed: 294.69673874775566 mins
+
+GBAF test stats: batch#72000, SER 2e-10, numErr 13, num_pkts 7.20e+10
+Time elapsed: 299.3611856500308 mins
+
+GBAF test stats: batch#73000, SER 2e-10, numErr 13, num_pkts 7.30e+10
+Time elapsed: 303.9892614364624 mins
+
+GBAF test stats: batch#74000, SER 2e-10, numErr 13, num_pkts 7.40e+10
+Time elapsed: 308.62396323283514 mins
+
+GBAF test stats: batch#75000, SER 2e-10, numErr 14, num_pkts 7.50e+10
+Time elapsed: 313.2164188663165 mins
+
+GBAF test stats: batch#76000, SER 2e-10, numErr 14, num_pkts 7.60e+10
+Time elapsed: 317.84091599782306 mins
+
+GBAF test stats: batch#77000, SER 2e-10, numErr 15, num_pkts 7.70e+10
+Time elapsed: 322.4295111815135 mins
+
+GBAF test stats: batch#78000, SER 2e-10, numErr 15, num_pkts 7.80e+10
+Time elapsed: 327.0301875193914 mins
+
+GBAF test stats: batch#79000, SER 2e-10, numErr 15, num_pkts 7.90e+10
+Time elapsed: 331.6618661642075 mins
+
+GBAF test stats: batch#80000, SER 2e-10, numErr 17, num_pkts 8.00e+10
+Time elapsed: 336.2750746846199 mins
+
+GBAF test stats: batch#81000, SER 2e-10, numErr 17, num_pkts 8.10e+10
+Time elapsed: 340.91211171150206 mins
+
+GBAF test stats: batch#82000, SER 2e-10, numErr 17, num_pkts 8.20e+10
+Time elapsed: 345.50535317659376 mins
+
+GBAF test stats: batch#83000, SER 2e-10, numErr 17, num_pkts 8.30e+10
+Time elapsed: 350.0880679607391 mins
+
+GBAF test stats: batch#84000, SER 2e-10, numErr 17, num_pkts 8.40e+10
+Time elapsed: 354.7515305439631 mins
+
+GBAF test stats: batch#85000, SER 2e-10, numErr 18, num_pkts 8.50e+10
+Time elapsed: 359.3593084216118 mins
+
+GBAF test stats: batch#86000, SER 2e-10, numErr 18, num_pkts 8.60e+10
+Time elapsed: 363.8311312754949 mins
+
+GBAF test stats: batch#87000, SER 2e-10, numErr 18, num_pkts 8.70e+10
+Time elapsed: 368.024817442894 mins
+
+GBAF test stats: batch#88000, SER 2e-10, numErr 18, num_pkts 8.80e+10
+Time elapsed: 371.8653337597847 mins
+
+GBAF test stats: batch#89000, SER 2e-10, numErr 18, num_pkts 8.90e+10
+Time elapsed: 375.67657616138456 mins
+
+GBAF test stats: batch#90000, SER 2e-10, numErr 18, num_pkts 9.00e+10
+Time elapsed: 379.4797725280126 mins
+
+GBAF test stats: batch#91000, SER 2e-10, numErr 18, num_pkts 9.10e+10
+Time elapsed: 383.28373883167905 mins
+
+GBAF test stats: batch#92000, SER 2e-10, numErr 18, num_pkts 9.20e+10
+Time elapsed: 386.91063679059346 mins
+
+GBAF test stats: batch#93000, SER 2e-10, numErr 18, num_pkts 9.30e+10
+Time elapsed: 390.47364313602446 mins
+
+GBAF test stats: batch#94000, SER 2e-10, numErr 18, num_pkts 9.40e+10
+Time elapsed: 394.0513919274012 mins
+
+GBAF test stats: batch#95000, SER 2e-10, numErr 19, num_pkts 9.50e+10
+Time elapsed: 397.6073708573977 mins
+
+GBAF test stats: batch#96000, SER 2e-10, numErr 19, num_pkts 9.60e+10
+Time elapsed: 401.1550172726313 mins
+
+GBAF test stats: batch#97000, SER 2e-10, numErr 19, num_pkts 9.70e+10
+Time elapsed: 404.72960189978284 mins
+
+GBAF test stats: batch#98000, SER 2e-10, numErr 19, num_pkts 9.80e+10
+Time elapsed: 408.27263335386914 mins
+
+GBAF test stats: batch#99000, SER 2e-10, numErr 19, num_pkts 9.90e+10
+Time elapsed: 411.80069736242297 mins
+
+GBAF test stats: batch#100000, SER 2e-10, numErr 20, num_pkts 1.00e+11
+Time elapsed: 415.3425163666407 mins
+
+GBAF test stats: batch#101000, SER 2e-10, numErr 21, num_pkts 1.01e+11
+Time elapsed: 418.89143613974255 mins
+
+GBAF test stats: batch#102000, SER 2e-10, numErr 22, num_pkts 1.02e+11
+Time elapsed: 422.41455518404643 mins
+
+GBAF test stats: batch#103000, SER 2e-10, numErr 22, num_pkts 1.03e+11
+Time elapsed: 425.9284764448802 mins
+
+GBAF test stats: batch#104000, SER 2e-10, numErr 22, num_pkts 1.04e+11
+Time elapsed: 429.4425763726234 mins
+
+GBAF test stats: batch#105000, SER 2e-10, numErr 23, num_pkts 1.05e+11
+Time elapsed: 432.94899779955546 mins
+
+GBAF test stats: batch#106000, SER 2e-10, numErr 23, num_pkts 1.06e+11
+Time elapsed: 436.477066997687 mins
+
+GBAF test stats: batch#107000, SER 2e-10, numErr 23, num_pkts 1.07e+11
+Time elapsed: 440.0485966324806 mins
+
+GBAF test stats: batch#108000, SER 2e-10, numErr 23, num_pkts 1.08e+11
+Time elapsed: 443.58046636978787 mins
+
+GBAF test stats: batch#109000, SER 2e-10, numErr 23, num_pkts 1.09e+11
+Time elapsed: 447.12952028512956 mins
+
+GBAF test stats: batch#110000, SER 2e-10, numErr 23, num_pkts 1.10e+11
+Time elapsed: 450.65733851591744 mins
+
+GBAF test stats: batch#111000, SER 2e-10, numErr 23, num_pkts 1.11e+11
+Time elapsed: 454.18213697274524 mins
+
+GBAF test stats: batch#112000, SER 2e-10, numErr 23, num_pkts 1.12e+11
+Time elapsed: 457.7177490234375 mins
+
+GBAF test stats: batch#113000, SER 2e-10, numErr 23, num_pkts 1.13e+11
+Time elapsed: 461.2548911054929 mins
+
+GBAF test stats: batch#114000, SER 2e-10, numErr 23, num_pkts 1.14e+11
+Time elapsed: 464.77988082170486 mins
+
+GBAF test stats: batch#115000, SER 2e-10, numErr 23, num_pkts 1.15e+11
+Time elapsed: 468.3149335583051 mins
+
+GBAF test stats: batch#116000, SER 2e-10, numErr 23, num_pkts 1.16e+11
+Time elapsed: 471.8230219403903 mins
+
+GBAF test stats: batch#117000, SER 2e-10, numErr 23, num_pkts 1.17e+11
+Time elapsed: 475.33521693547567 mins
+
+GBAF test stats: batch#118000, SER 2e-10, numErr 24, num_pkts 1.18e+11
+Time elapsed: 478.89939411878584 mins
+
+GBAF test stats: batch#119000, SER 2e-10, numErr 24, num_pkts 1.19e+11
+Time elapsed: 482.4096572240194 mins
+
+GBAF test stats: batch#120000, SER 2e-10, numErr 24, num_pkts 1.20e+11
+Time elapsed: 485.92393297751744 mins
+
+GBAF test stats: batch#121000, SER 2e-10, numErr 24, num_pkts 1.21e+11
+Time elapsed: 489.44360833565395 mins
+
+GBAF test stats: batch#122000, SER 2e-10, numErr 24, num_pkts 1.22e+11
+Time elapsed: 492.98801122109097 mins
+
+GBAF test stats: batch#123000, SER 2e-10, numErr 24, num_pkts 1.23e+11
+Time elapsed: 496.51824703613914 mins
+
+GBAF test stats: batch#124000, SER 2e-10, numErr 24, num_pkts 1.24e+11
+Time elapsed: 500.0306951204936 mins
+
+GBAF test stats: batch#125000, SER 2e-10, numErr 25, num_pkts 1.25e+11
+Time elapsed: 503.553711660703 mins
+
+GBAF test stats: batch#126000, SER 2e-10, numErr 25, num_pkts 1.26e+11
+Time elapsed: 507.0516756772995 mins
+
+GBAF test stats: batch#127000, SER 2e-10, numErr 25, num_pkts 1.27e+11
+Time elapsed: 510.59379438559216 mins
+
+GBAF test stats: batch#128000, SER 2e-10, numErr 25, num_pkts 1.28e+11
+Time elapsed: 514.1168450276057 mins
+
+GBAF test stats: batch#129000, SER 2e-10, numErr 25, num_pkts 1.29e+11
+Time elapsed: 517.6493564645449 mins
+
+GBAF test stats: batch#130000, SER 2e-10, numErr 25, num_pkts 1.30e+11
+Time elapsed: 521.1782440543175 mins
+
+GBAF test stats: batch#131000, SER 2e-10, numErr 25, num_pkts 1.31e+11
+Time elapsed: 524.7230832735697 mins
+
+GBAF test stats: batch#132000, SER 2e-10, numErr 25, num_pkts 1.32e+11
+Time elapsed: 528.2620814681053 mins
+
+GBAF test stats: batch#133000, SER 2e-10, numErr 26, num_pkts 1.33e+11
+Time elapsed: 531.7673323512078 mins
+
+GBAF test stats: batch#134000, SER 2e-10, numErr 26, num_pkts 1.34e+11
+Time elapsed: 535.305258456866 mins
+
+GBAF test stats: batch#135000, SER 2e-10, numErr 26, num_pkts 1.35e+11
+Time elapsed: 538.8398502826691 mins
+
+GBAF test stats: batch#136000, SER 2e-10, numErr 27, num_pkts 1.36e+11
+Time elapsed: 542.3603238900503 mins
+
+GBAF test stats: batch#137000, SER 2e-10, numErr 27, num_pkts 1.37e+11
+Time elapsed: 545.8961997469266 mins
+
+GBAF test stats: batch#138000, SER 2e-10, numErr 27, num_pkts 1.38e+11
+Time elapsed: 549.435790793101 mins
+
+GBAF test stats: batch#139000, SER 2e-10, numErr 27, num_pkts 1.39e+11
+Time elapsed: 552.96708821853 mins
+
+GBAF test stats: batch#140000, SER 2e-10, numErr 27, num_pkts 1.40e+11
+Time elapsed: 556.5159336924553 mins
+
+GBAF test stats: batch#141000, SER 2e-10, numErr 27, num_pkts 1.41e+11
+Time elapsed: 560.0724064787229 mins
+
+GBAF test stats: batch#142000, SER 2e-10, numErr 27, num_pkts 1.42e+11
+Time elapsed: 563.5764230330785 mins
+
+GBAF test stats: batch#143000, SER 2e-10, numErr 27, num_pkts 1.43e+11
+Time elapsed: 567.1312325318654 mins
+
+GBAF test stats: batch#144000, SER 2e-10, numErr 27, num_pkts 1.44e+11
+Time elapsed: 570.6633617520332 mins
+
+GBAF test stats: batch#145000, SER 2e-10, numErr 27, num_pkts 1.45e+11
+Time elapsed: 574.2034212907155 mins
+
+GBAF test stats: batch#146000, SER 2e-10, numErr 28, num_pkts 1.46e+11
+Time elapsed: 577.7286445101103 mins
+
+GBAF test stats: batch#147000, SER 2e-10, numErr 28, num_pkts 1.47e+11
+Time elapsed: 581.2579200069109 mins
+
+GBAF test stats: batch#148000, SER 2e-10, numErr 28, num_pkts 1.48e+11
+Time elapsed: 584.7789484699567 mins
+
+GBAF test stats: batch#149000, SER 2e-10, numErr 28, num_pkts 1.49e+11
+Time elapsed: 588.3082927385966 mins
+
+GBAF test stats: batch#150000, SER 2e-10, numErr 29, num_pkts 1.50e+11
+Time elapsed: 591.8337110757827 mins
+
+GBAF test stats: batch#151000, SER 2e-10, numErr 31, num_pkts 1.51e+11
+Time elapsed: 595.3789570490519 mins
+
+GBAF test stats: batch#152000, SER 2e-10, numErr 31, num_pkts 1.52e+11
+Time elapsed: 598.9021604855856 mins
+
+GBAF test stats: batch#153000, SER 2e-10, numErr 31, num_pkts 1.53e+11
+Time elapsed: 602.426815032959 mins
+
+GBAF test stats: batch#154000, SER 2e-10, numErr 31, num_pkts 1.54e+11
+Time elapsed: 605.9667481462161 mins
+
+GBAF test stats: batch#155000, SER 2e-10, numErr 31, num_pkts 1.55e+11
+Time elapsed: 609.4957951227824 mins
+
+GBAF test stats: batch#156000, SER 2e-10, numErr 31, num_pkts 1.56e+11
+Time elapsed: 613.0473539074262 mins
+
+GBAF test stats: batch#157000, SER 2e-10, numErr 31, num_pkts 1.57e+11
+Time elapsed: 616.577345097065 mins
+
+GBAF test stats: batch#158000, SER 2e-10, numErr 31, num_pkts 1.58e+11
+Time elapsed: 620.1015643914541 mins
+
+GBAF test stats: batch#159000, SER 2e-10, numErr 31, num_pkts 1.59e+11
+Time elapsed: 623.6308923959732 mins
+
+GBAF test stats: batch#160000, SER 2e-10, numErr 31, num_pkts 1.60e+11
+Time elapsed: 627.1615234692891 mins
+
+GBAF test stats: batch#161000, SER 2e-10, numErr 31, num_pkts 1.61e+11
+Time elapsed: 630.6753386735916 mins
+
+GBAF test stats: batch#162000, SER 2e-10, numErr 31, num_pkts 1.62e+11
+Time elapsed: 634.1959694862365 mins
+
+GBAF test stats: batch#163000, SER 2e-10, numErr 31, num_pkts 1.63e+11
+Time elapsed: 637.865989724795 mins
+
+GBAF test stats: batch#164000, SER 2e-10, numErr 31, num_pkts 1.64e+11
+Time elapsed: 641.5741879185041 mins
+
+GBAF test stats: batch#165000, SER 2e-10, numErr 31, num_pkts 1.65e+11
+Time elapsed: 645.3118308703105 mins
+
+GBAF test stats: batch#166000, SER 2e-10, numErr 32, num_pkts 1.66e+11
+Time elapsed: 649.0404956817626 mins
+
+GBAF test stats: batch#167000, SER 2e-10, numErr 32, num_pkts 1.67e+11
+Time elapsed: 652.7709495266279 mins
+
+GBAF test stats: batch#168000, SER 2e-10, numErr 32, num_pkts 1.68e+11
+Time elapsed: 656.5059505383174 mins
+
+GBAF test stats: batch#169000, SER 2e-10, numErr 32, num_pkts 1.69e+11
+Time elapsed: 660.2401512861252 mins
+
+GBAF test stats: batch#170000, SER 2e-10, numErr 32, num_pkts 1.70e+11
+Time elapsed: 663.967592604955 mins
+
+GBAF test stats: batch#171000, SER 2e-10, numErr 32, num_pkts 1.71e+11
+Time elapsed: 667.6759167750677 mins
+
+GBAF test stats: batch#172000, SER 2e-10, numErr 32, num_pkts 1.72e+11
+Time elapsed: 671.4058193206787 mins
+
+GBAF test stats: batch#173000, SER 2e-10, numErr 32, num_pkts 1.73e+11
+Time elapsed: 675.128940931956 mins
+
+GBAF test stats: batch#174000, SER 2e-10, numErr 32, num_pkts 1.74e+11
+Time elapsed: 678.8625288208326 mins
+
+GBAF test stats: batch#175000, SER 2e-10, numErr 32, num_pkts 1.75e+11
+Time elapsed: 682.5884994665781 mins
+
+GBAF test stats: batch#176000, SER 2e-10, numErr 32, num_pkts 1.76e+11
+Time elapsed: 686.3168680071831 mins
+
+GBAF test stats: batch#177000, SER 2e-10, numErr 32, num_pkts 1.77e+11
+Time elapsed: 690.0661734263102 mins
+
+GBAF test stats: batch#178000, SER 2e-10, numErr 32, num_pkts 1.78e+11
+Time elapsed: 693.7762873609861 mins
+
+GBAF test stats: batch#179000, SER 2e-10, numErr 32, num_pkts 1.79e+11
+Time elapsed: 697.4927726348241 mins
+
+GBAF test stats: batch#180000, SER 2e-10, numErr 35, num_pkts 1.80e+11
+Time elapsed: 701.2229711691539 mins
+
+GBAF test stats: batch#181000, SER 2e-10, numErr 35, num_pkts 1.81e+11
+Time elapsed: 704.9568470716476 mins
+
+GBAF test stats: batch#182000, SER 2e-10, numErr 36, num_pkts 1.82e+11
+Time elapsed: 708.6768428206444 mins
+
+GBAF test stats: batch#183000, SER 2e-10, numErr 36, num_pkts 1.83e+11
+Time elapsed: 712.4081936240196 mins
+
+GBAF test stats: batch#184000, SER 2e-10, numErr 36, num_pkts 1.84e+11
+Time elapsed: 716.130959490935 mins
+
+GBAF test stats: batch#185000, SER 2e-10, numErr 37, num_pkts 1.85e+11
+Time elapsed: 719.8501126368841 mins
+
+GBAF test stats: batch#186000, SER 2e-10, numErr 37, num_pkts 1.86e+11
+Time elapsed: 723.5443963209788 mins
+
+GBAF test stats: batch#187000, SER 2e-10, numErr 37, num_pkts 1.87e+11
+Time elapsed: 727.2630469679832 mins
+
+GBAF test stats: batch#188000, SER 2e-10, numErr 37, num_pkts 1.88e+11
+Time elapsed: 730.9757445772489 mins
+
+GBAF test stats: batch#189000, SER 2e-10, numErr 37, num_pkts 1.89e+11
+Time elapsed: 734.7047117233276 mins
+
+GBAF test stats: batch#190000, SER 2e-10, numErr 37, num_pkts 1.90e+11
+Time elapsed: 738.4293309013049 mins
+
+GBAF test stats: batch#191000, SER 2e-10, numErr 37, num_pkts 1.91e+11
+Time elapsed: 742.1494470278423 mins
+
+GBAF test stats: batch#192000, SER 2e-10, numErr 37, num_pkts 1.92e+11
+Time elapsed: 745.8732577284177 mins
+
+GBAF test stats: batch#193000, SER 2e-10, numErr 37, num_pkts 1.93e+11
+Time elapsed: 749.5910307049751 mins
+
+GBAF test stats: batch#194000, SER 2e-10, numErr 37, num_pkts 1.94e+11
+Time elapsed: 753.3237542947134 mins
+
+GBAF test stats: batch#195000, SER 2e-10, numErr 38, num_pkts 1.95e+11
+Time elapsed: 757.0565117835998 mins
+
+GBAF test stats: batch#196000, SER 2e-10, numErr 38, num_pkts 1.96e+11
+Time elapsed: 760.7725667436918 mins
+
+GBAF test stats: batch#197000, SER 2e-10, numErr 38, num_pkts 1.97e+11
+Time elapsed: 764.543791826566 mins
+
+GBAF test stats: batch#198000, SER 2e-10, numErr 38, num_pkts 1.98e+11
+Time elapsed: 768.260875026385 mins
+
+GBAF test stats: batch#199000, SER 2e-10, numErr 38, num_pkts 1.99e+11
+Time elapsed: 771.9864835500717 mins
+
+GBAF test stats: batch#200000, SER 2e-10, numErr 38, num_pkts 2.00e+11
+Time elapsed: 775.7161757270495 mins
+
+GBAF test stats: batch#201000, SER 2e-10, numErr 38, num_pkts 2.01e+11
+Time elapsed: 779.4389206886292 mins
+
+GBAF test stats: batch#202000, SER 2e-10, numErr 38, num_pkts 2.02e+11
+Time elapsed: 783.0592245300611 mins
+
+GBAF test stats: batch#203000, SER 2e-10, numErr 38, num_pkts 2.03e+11
+Time elapsed: 786.6551344116529 mins
+
+GBAF test stats: batch#204000, SER 2e-10, numErr 38, num_pkts 2.04e+11
+Time elapsed: 790.2801573634148 mins
+
+GBAF test stats: batch#205000, SER 2e-10, numErr 38, num_pkts 2.05e+11
+Time elapsed: 793.9253777384758 mins
+
+GBAF test stats: batch#206000, SER 2e-10, numErr 39, num_pkts 2.06e+11
+Time elapsed: 797.5265315453212 mins
+
+GBAF test stats: batch#207000, SER 2e-10, numErr 39, num_pkts 2.07e+11
+Time elapsed: 801.1371606707573 mins
+
+GBAF test stats: batch#208000, SER 2e-10, numErr 39, num_pkts 2.08e+11
+Time elapsed: 804.7580879410108 mins
+
+GBAF test stats: batch#209000, SER 2e-10, numErr 39, num_pkts 2.09e+11
+Time elapsed: 808.375669960181 mins
+
+GBAF test stats: batch#210000, SER 2e-10, numErr 39, num_pkts 2.10e+11
+Time elapsed: 812.0135408957799 mins
+
+GBAF test stats: batch#211000, SER 2e-10, numErr 39, num_pkts 2.11e+11
+Time elapsed: 815.6428371389707 mins
+
+GBAF test stats: batch#212000, SER 2e-10, numErr 39, num_pkts 2.12e+11
+Time elapsed: 819.2746387322744 mins
+
+GBAF test stats: batch#213000, SER 2e-10, numErr 39, num_pkts 2.13e+11
+Time elapsed: 822.894160425663 mins
+
+GBAF test stats: batch#214000, SER 2e-10, numErr 39, num_pkts 2.14e+11
+Time elapsed: 826.5069697141647 mins
+
+GBAF test stats: batch#215000, SER 2e-10, numErr 39, num_pkts 2.15e+11
+Time elapsed: 830.143158352375 mins
+
+GBAF test stats: batch#216000, SER 2e-10, numErr 39, num_pkts 2.16e+11
+Time elapsed: 833.7537203470866 mins
+
+GBAF test stats: batch#217000, SER 2e-10, numErr 39, num_pkts 2.17e+11
+Time elapsed: 837.3679752270381 mins
+
+GBAF test stats: batch#218000, SER 2e-10, numErr 39, num_pkts 2.18e+11
+Time elapsed: 840.9660862525304 mins
+
+GBAF test stats: batch#219000, SER 2e-10, numErr 39, num_pkts 2.19e+11
+Time elapsed: 844.5847326318423 mins
+
+GBAF test stats: batch#220000, SER 2e-10, numErr 39, num_pkts 2.20e+11
+Time elapsed: 848.1929586331049 mins
+
+GBAF test stats: batch#221000, SER 2e-10, numErr 40, num_pkts 2.21e+11
+Time elapsed: 851.8149096369743 mins
+
+GBAF test stats: batch#222000, SER 2e-10, numErr 40, num_pkts 2.22e+11
+Time elapsed: 855.4223487416904 mins
+
+GBAF test stats: batch#223000, SER 2e-10, numErr 40, num_pkts 2.23e+11
+Time elapsed: 859.0431286692619 mins
+
+GBAF test stats: batch#224000, SER 2e-10, numErr 40, num_pkts 2.24e+11
+Time elapsed: 862.6720252235731 mins
+
+GBAF test stats: batch#225000, SER 2e-10, numErr 41, num_pkts 2.25e+11
+Time elapsed: 866.2932536363602 mins
+
+GBAF test stats: batch#226000, SER 2e-10, numErr 41, num_pkts 2.26e+11
+Time elapsed: 869.9027886589369 mins
+
+GBAF test stats: batch#227000, SER 2e-10, numErr 42, num_pkts 2.27e+11
+Time elapsed: 873.5158394455909 mins
+
+GBAF test stats: batch#228000, SER 2e-10, numErr 42, num_pkts 2.28e+11
+Time elapsed: 877.1488411784172 mins
+
+GBAF test stats: batch#229000, SER 2e-10, numErr 42, num_pkts 2.29e+11
+Time elapsed: 880.7862633824349 mins
+
+GBAF test stats: batch#230000, SER 2e-10, numErr 43, num_pkts 2.30e+11
+Time elapsed: 884.410628871123 mins
+
+GBAF test stats: batch#231000, SER 2e-10, numErr 44, num_pkts 2.31e+11
+Time elapsed: 888.0419799725215 mins
+
+GBAF test stats: batch#232000, SER 2e-10, numErr 45, num_pkts 2.32e+11
+Time elapsed: 891.6826512893041 mins
+
+GBAF test stats: batch#233000, SER 2e-10, numErr 46, num_pkts 2.33e+11
+Time elapsed: 895.2998060981432 mins
+
+GBAF test stats: batch#234000, SER 2e-10, numErr 46, num_pkts 2.34e+11
+Time elapsed: 898.9202943960826 mins
+
+GBAF test stats: batch#235000, SER 2e-10, numErr 46, num_pkts 2.35e+11
+Time elapsed: 902.5478177309036 mins
+
+GBAF test stats: batch#236000, SER 2e-10, numErr 46, num_pkts 2.36e+11
+Time elapsed: 906.1818793376286 mins
+
+GBAF test stats: batch#237000, SER 2e-10, numErr 46, num_pkts 2.37e+11
+Time elapsed: 909.809115688006 mins
+
+GBAF test stats: batch#238000, SER 2e-10, numErr 46, num_pkts 2.38e+11
+Time elapsed: 913.4190127213795 mins
+
+GBAF test stats: batch#239000, SER 2e-10, numErr 46, num_pkts 2.39e+11
+Time elapsed: 917.0408714175225 mins
+
+GBAF test stats: batch#240000, SER 2e-10, numErr 46, num_pkts 2.40e+11
+Time elapsed: 920.676261818409 mins
+
+GBAF test stats: batch#241000, SER 2e-10, numErr 46, num_pkts 2.41e+11
+Time elapsed: 924.326622915268 mins
+
+GBAF test stats: batch#242000, SER 2e-10, numErr 46, num_pkts 2.42e+11
+Time elapsed: 927.9816382129987 mins
+
+GBAF test stats: batch#243000, SER 2e-10, numErr 46, num_pkts 2.43e+11
+Time elapsed: 931.6094219009082 mins
+
+GBAF test stats: batch#244000, SER 2e-10, numErr 46, num_pkts 2.44e+11
+Time elapsed: 935.2473616162936 mins
+
+GBAF test stats: batch#245000, SER 2e-10, numErr 46, num_pkts 2.45e+11
+Time elapsed: 938.8795732696851 mins
+
+GBAF test stats: batch#246000, SER 2e-10, numErr 47, num_pkts 2.46e+11
+Time elapsed: 942.4892493287722 mins
+
+GBAF test stats: batch#247000, SER 2e-10, numErr 47, num_pkts 2.47e+11
+Time elapsed: 946.1054612239202 mins
+
+GBAF test stats: batch#248000, SER 2e-10, numErr 47, num_pkts 2.48e+11
+Time elapsed: 949.7183976332346 mins
+
+GBAF test stats: batch#249000, SER 2e-10, numErr 47, num_pkts 2.49e+11
+Time elapsed: 953.3314694007238 mins
+
+GBAF test stats: batch#250000, SER 2e-10, numErr 47, num_pkts 2.50e+11
+Time elapsed: 956.9753765225411 mins
+
+GBAF test stats: batch#251000, SER 2e-10, numErr 47, num_pkts 2.51e+11
+Time elapsed: 961.0095912337304 mins
+
+GBAF test stats: batch#252000, SER 2e-10, numErr 47, num_pkts 2.52e+11
+Time elapsed: 964.6436153292656 mins
+
+GBAF test stats: batch#253000, SER 2e-10, numErr 47, num_pkts 2.53e+11
+Time elapsed: 968.2717448949813 mins
+
+GBAF test stats: batch#254000, SER 2e-10, numErr 47, num_pkts 2.54e+11
+Time elapsed: 971.8991797447204 mins
+
+GBAF test stats: batch#255000, SER 2e-10, numErr 47, num_pkts 2.55e+11
+Time elapsed: 975.5315805832545 mins
+
+GBAF test stats: batch#256000, SER 2e-10, numErr 48, num_pkts 2.56e+11
+Time elapsed: 979.1726028641065 mins
+
+GBAF test stats: batch#257000, SER 2e-10, numErr 48, num_pkts 2.57e+11
+Time elapsed: 982.8026211023331 mins
+
+GBAF test stats: batch#258000, SER 2e-10, numErr 48, num_pkts 2.58e+11
+Time elapsed: 986.3813976049423 mins
+
+GBAF test stats: batch#259000, SER 2e-10, numErr 49, num_pkts 2.59e+11
+Time elapsed: 989.9454697966576 mins
+
+GBAF test stats: batch#260000, SER 2e-10, numErr 49, num_pkts 2.60e+11
+Time elapsed: 993.5818573792775 mins
+
+GBAF test stats: batch#261000, SER 2e-10, numErr 49, num_pkts 2.61e+11
+Time elapsed: 997.2012974739075 mins
+
+GBAF test stats: batch#262000, SER 2e-10, numErr 49, num_pkts 2.62e+11
+Time elapsed: 1001.5404645681381 mins
+
+GBAF test stats: batch#263000, SER 2e-10, numErr 49, num_pkts 2.63e+11
+Time elapsed: 1006.6979458610217 mins
+
+GBAF test stats: batch#264000, SER 2e-10, numErr 50, num_pkts 2.64e+11
+Time elapsed: 1011.8814186533292 mins
+
+GBAF test stats: batch#265000, SER 2e-10, numErr 50, num_pkts 2.65e+11
+Time elapsed: 1017.034410405159 mins
+
+GBAF test stats: batch#266000, SER 2e-10, numErr 50, num_pkts 2.66e+11
+Time elapsed: 1022.2282693743706 mins
+
+GBAF test stats: batch#267000, SER 2e-10, numErr 51, num_pkts 2.67e+11
+Time elapsed: 1027.3644420345624 mins
+
+GBAF test stats: batch#268000, SER 2e-10, numErr 51, num_pkts 2.68e+11
+Time elapsed: 1032.5511101166408 mins
+
+GBAF test stats: batch#269000, SER 2e-10, numErr 51, num_pkts 2.69e+11
+Time elapsed: 1037.8284511288007 mins
+
+GBAF test stats: batch#270000, SER 2e-10, numErr 51, num_pkts 2.70e+11
+Time elapsed: 1042.7721007267635 mins
+
+GBAF test stats: batch#271000, SER 2e-10, numErr 51, num_pkts 2.71e+11
+Time elapsed: 1046.3775363961856 mins
+
+GBAF test stats: batch#272000, SER 2e-10, numErr 51, num_pkts 2.72e+11
+Time elapsed: 1049.9821255286536 mins
+
+GBAF test stats: batch#273000, SER 2e-10, numErr 51, num_pkts 2.73e+11
+Time elapsed: 1053.5930382887523 mins
+
+GBAF test stats: batch#274000, SER 2e-10, numErr 51, num_pkts 2.74e+11
+Time elapsed: 1057.2036111752193 mins
+
+GBAF test stats: batch#275000, SER 2e-10, numErr 52, num_pkts 2.75e+11
+Time elapsed: 1060.7821371078492 mins
+
+GBAF test stats: batch#276000, SER 2e-10, numErr 52, num_pkts 2.76e+11
+Time elapsed: 1064.3534896453223 mins
+
+GBAF test stats: batch#277000, SER 2e-10, numErr 53, num_pkts 2.77e+11
+Time elapsed: 1067.9585826436678 mins
+
+GBAF test stats: batch#278000, SER 2e-10, numErr 53, num_pkts 2.78e+11
+Time elapsed: 1071.5650210618974 mins
+
+GBAF test stats: batch#279000, SER 2e-10, numErr 53, num_pkts 2.79e+11
+Time elapsed: 1075.1945208350817 mins
+
+GBAF test stats: batch#280000, SER 2e-10, numErr 54, num_pkts 2.80e+11
+Time elapsed: 1078.8144789854684 mins
+
+GBAF test stats: batch#281000, SER 2e-10, numErr 54, num_pkts 2.81e+11
+Time elapsed: 1082.4237575332324 mins
+
+GBAF test stats: batch#282000, SER 2e-10, numErr 54, num_pkts 2.82e+11
+Time elapsed: 1086.026495707035 mins
+
+GBAF test stats: batch#283000, SER 2e-10, numErr 54, num_pkts 2.83e+11
+Time elapsed: 1089.6226373116176 mins
+
+GBAF test stats: batch#284000, SER 2e-10, numErr 54, num_pkts 2.84e+11
+Time elapsed: 1093.2430167516072 mins
+
+GBAF test stats: batch#285000, SER 2e-10, numErr 55, num_pkts 2.85e+11
+Time elapsed: 1096.843675005436 mins
+
+GBAF test stats: batch#286000, SER 2e-10, numErr 55, num_pkts 2.86e+11
+Time elapsed: 1100.7249994238218 mins
+
+GBAF test stats: batch#287000, SER 2e-10, numErr 55, num_pkts 2.87e+11
+Time elapsed: 1106.0357589522998 mins
+
+GBAF test stats: batch#288000, SER 2e-10, numErr 56, num_pkts 2.88e+11
+Time elapsed: 1111.7168933669725 mins
+
+GBAF test stats: batch#289000, SER 2e-10, numErr 57, num_pkts 2.89e+11
+Time elapsed: 1117.3697805047036 mins
+
+GBAF test stats: batch#290000, SER 2e-10, numErr 57, num_pkts 2.90e+11
+Time elapsed: 1123.0154980897903 mins
+
+GBAF test stats: batch#291000, SER 2e-10, numErr 57, num_pkts 2.91e+11
+Time elapsed: 1128.6922923723857 mins
+
+GBAF test stats: batch#292000, SER 2e-10, numErr 57, num_pkts 2.92e+11
+Time elapsed: 1134.314260061582 mins
+
+GBAF test stats: batch#293000, SER 2e-10, numErr 57, num_pkts 2.93e+11
+Time elapsed: 1140.010242577394 mins
+
+GBAF test stats: batch#294000, SER 2e-10, numErr 58, num_pkts 2.94e+11
+Time elapsed: 1145.6939336419105 mins
+
+GBAF test stats: batch#295000, SER 2e-10, numErr 58, num_pkts 2.95e+11
+Time elapsed: 1151.370582218965 mins
+
+GBAF test stats: batch#296000, SER 2e-10, numErr 58, num_pkts 2.96e+11
+Time elapsed: 1157.0426808079085 mins
+
+GBAF test stats: batch#297000, SER 2e-10, numErr 58, num_pkts 2.97e+11
+Time elapsed: 1162.693128403028 mins
+
+GBAF test stats: batch#298000, SER 2e-10, numErr 58, num_pkts 2.98e+11
+Time elapsed: 1168.360015463829 mins
+
+GBAF test stats: batch#299000, SER 2e-10, numErr 58, num_pkts 2.99e+11
+Time elapsed: 1174.053073422114 mins
+
+GBAF test stats: batch#300000, SER 2e-10, numErr 58, num_pkts 3.00e+11
+Time elapsed: 1179.7205590566 mins
+
+GBAF test stats: batch#301000, SER 2e-10, numErr 58, num_pkts 3.01e+11
+Time elapsed: 1185.3784989317257 mins
+
+GBAF test stats: batch#302000, SER 2e-10, numErr 58, num_pkts 3.02e+11
+Time elapsed: 1191.0590685606003 mins
+
+GBAF test stats: batch#303000, SER 2e-10, numErr 58, num_pkts 3.03e+11
+Time elapsed: 1196.7119954228401 mins
+
+GBAF test stats: batch#304000, SER 2e-10, numErr 58, num_pkts 3.04e+11
+Time elapsed: 1202.3769325812657 mins
+
+GBAF test stats: batch#305000, SER 2e-10, numErr 58, num_pkts 3.05e+11
+Time elapsed: 1208.0591631730397 mins
+
+GBAF test stats: batch#306000, SER 2e-10, numErr 59, num_pkts 3.06e+11
+Time elapsed: 1213.6791301846504 mins
+
+GBAF test stats: batch#307000, SER 2e-10, numErr 60, num_pkts 3.07e+11
+Time elapsed: 1219.3641899108886 mins
+
+GBAF test stats: batch#308000, SER 2e-10, numErr 60, num_pkts 3.08e+11
+Time elapsed: 1225.0190021197002 mins
+
+GBAF test stats: batch#309000, SER 2e-10, numErr 60, num_pkts 3.09e+11
+Time elapsed: 1230.6801098148028 mins
+
+GBAF test stats: batch#310000, SER 2e-10, numErr 60, num_pkts 3.10e+11
+Time elapsed: 1236.37499995629 mins
+
+GBAF test stats: batch#311000, SER 2e-10, numErr 60, num_pkts 3.11e+11
+Time elapsed: 1242.052094388008 mins
+
+GBAF test stats: batch#312000, SER 2e-10, numErr 60, num_pkts 3.12e+11
+Time elapsed: 1247.7160397609075 mins
+
+GBAF test stats: batch#313000, SER 2e-10, numErr 60, num_pkts 3.13e+11
+Time elapsed: 1253.41549949646 mins
+
+GBAF test stats: batch#314000, SER 2e-10, numErr 60, num_pkts 3.14e+11
+Time elapsed: 1258.9757669488588 mins
+
+GBAF test stats: batch#315000, SER 2e-10, numErr 60, num_pkts 3.15e+11
+Time elapsed: 1264.5097593069077 mins
+
+GBAF test stats: batch#316000, SER 2e-10, numErr 60, num_pkts 3.16e+11
+Time elapsed: 1270.1923191507658 mins
+
+GBAF test stats: batch#317000, SER 2e-10, numErr 60, num_pkts 3.17e+11
+Time elapsed: 1275.8452480753263 mins
+
+GBAF test stats: batch#318000, SER 2e-10, numErr 60, num_pkts 3.18e+11
+Time elapsed: 1281.5288520375886 mins
+
+GBAF test stats: batch#319000, SER 2e-10, numErr 60, num_pkts 3.19e+11
+Time elapsed: 1287.23252705733 mins
+
+GBAF test stats: batch#320000, SER 2e-10, numErr 60, num_pkts 3.20e+11
+Time elapsed: 1292.8821118950843 mins
+
+GBAF test stats: batch#321000, SER 2e-10, numErr 60, num_pkts 3.21e+11
+Time elapsed: 1298.5717828392983 mins
+
+GBAF test stats: batch#322000, SER 2e-10, numErr 60, num_pkts 3.22e+11
+Time elapsed: 1304.238484609127 mins
+
+GBAF test stats: batch#323000, SER 2e-10, numErr 60, num_pkts 3.23e+11
+Time elapsed: 1309.8975633541743 mins
+
+GBAF test stats: batch#324000, SER 2e-10, numErr 60, num_pkts 3.24e+11
+Time elapsed: 1315.6004439314206 mins
+
+GBAF test stats: batch#325000, SER 2e-10, numErr 60, num_pkts 3.25e+11
+Time elapsed: 1321.2700342297553 mins
+
+GBAF test stats: batch#326000, SER 2e-10, numErr 60, num_pkts 3.26e+11
+Time elapsed: 1326.933446351687 mins
+
+GBAF test stats: batch#327000, SER 2e-10, numErr 60, num_pkts 3.27e+11
+Time elapsed: 1332.6325859467188 mins
+
+GBAF test stats: batch#328000, SER 2e-10, numErr 60, num_pkts 3.28e+11
+Time elapsed: 1338.286917301019 mins
+
+GBAF test stats: batch#329000, SER 2e-10, numErr 61, num_pkts 3.29e+11
+Time elapsed: 1343.9481598218283 mins
+
+GBAF test stats: batch#330000, SER 2e-10, numErr 61, num_pkts 3.30e+11
+Time elapsed: 1349.6296622077623 mins
+
+GBAF test stats: batch#331000, SER 2e-10, numErr 61, num_pkts 3.31e+11
+Time elapsed: 1355.2874412894248 mins
+
+GBAF test stats: batch#332000, SER 2e-10, numErr 61, num_pkts 3.32e+11
+Time elapsed: 1360.9967560927073 mins
+
+GBAF test stats: batch#333000, SER 2e-10, numErr 61, num_pkts 3.33e+11
+Time elapsed: 1366.6608065883318 mins
+
+GBAF test stats: batch#334000, SER 2e-10, numErr 61, num_pkts 3.34e+11
+Time elapsed: 1372.3172224322955 mins
+
+GBAF test stats: batch#335000, SER 2e-10, numErr 61, num_pkts 3.35e+11
+Time elapsed: 1378.02098462979 mins
+
+GBAF test stats: batch#336000, SER 2e-10, numErr 61, num_pkts 3.36e+11
+Time elapsed: 1383.6801694949468 mins
+
+GBAF test stats: batch#337000, SER 2e-10, numErr 62, num_pkts 3.37e+11
+Time elapsed: 1389.3650884111723 mins
+
+GBAF test stats: batch#338000, SER 2e-10, numErr 62, num_pkts 3.38e+11
+Time elapsed: 1395.0102540016173 mins
+
+GBAF test stats: batch#339000, SER 2e-10, numErr 64, num_pkts 3.39e+11
+Time elapsed: 1400.6439457535744 mins
+
+GBAF test stats: batch#340000, SER 2e-10, numErr 64, num_pkts 3.40e+11
+Time elapsed: 1406.2574707190195 mins
+
+GBAF test stats: batch#341000, SER 2e-10, numErr 64, num_pkts 3.41e+11
+Time elapsed: 1411.9015376726786 mins
+
+GBAF test stats: batch#342000, SER 2e-10, numErr 64, num_pkts 3.42e+11
+Time elapsed: 1417.3703833858171 mins
+
+GBAF test stats: batch#343000, SER 2e-10, numErr 64, num_pkts 3.43e+11
+Time elapsed: 1422.9201057076455 mins
+
+GBAF test stats: batch#344000, SER 2e-10, numErr 64, num_pkts 3.44e+11
+Time elapsed: 1428.5736033519108 mins
+
+GBAF test stats: batch#345000, SER 2e-10, numErr 64, num_pkts 3.45e+11
+Time elapsed: 1434.140073899428 mins
+
+GBAF test stats: batch#346000, SER 2e-10, numErr 64, num_pkts 3.46e+11
+Time elapsed: 1439.7935685833295 mins
+
+GBAF test stats: batch#347000, SER 2e-10, numErr 64, num_pkts 3.47e+11
+Time elapsed: 1445.4199883818626 mins
+
+GBAF test stats: batch#348000, SER 2e-10, numErr 64, num_pkts 3.48e+11
+Time elapsed: 1451.0371787309646 mins
+
+GBAF test stats: batch#349000, SER 2e-10, numErr 65, num_pkts 3.49e+11
+Time elapsed: 1456.656779285272 mins
+
+GBAF test stats: batch#350000, SER 2e-10, numErr 65, num_pkts 3.50e+11
+Time elapsed: 1462.2670762697855 mins
+
+GBAF test stats: batch#351000, SER 2e-10, numErr 65, num_pkts 3.51e+11
+Time elapsed: 1467.8617745200793 mins
+
+GBAF test stats: batch#352000, SER 2e-10, numErr 65, num_pkts 3.52e+11
+Time elapsed: 1473.4987060109775 mins
+
+GBAF test stats: batch#353000, SER 2e-10, numErr 65, num_pkts 3.53e+11
+Time elapsed: 1479.1088667233785 mins
+
+GBAF test stats: batch#354000, SER 2e-10, numErr 65, num_pkts 3.54e+11
+Time elapsed: 1484.5890139540036 mins
+
+GBAF test stats: batch#355000, SER 2e-10, numErr 66, num_pkts 3.55e+11
+Time elapsed: 1489.3923934896786 mins
+
+GBAF test stats: batch#356000, SER 2e-10, numErr 66, num_pkts 3.56e+11
+Time elapsed: 1494.1794702808063 mins
+
+GBAF test stats: batch#357000, SER 2e-10, numErr 66, num_pkts 3.57e+11
+Time elapsed: 1498.9857729434966 mins
+
+GBAF test stats: batch#358000, SER 2e-10, numErr 66, num_pkts 3.58e+11
+Time elapsed: 1503.769876730442 mins
+
+GBAF test stats: batch#359000, SER 2e-10, numErr 66, num_pkts 3.59e+11
+Time elapsed: 1508.538281071186 mins
+
+GBAF test stats: batch#360000, SER 2e-10, numErr 66, num_pkts 3.60e+11
+Time elapsed: 1513.3667641401291 mins
+
+GBAF test stats: batch#361000, SER 2e-10, numErr 66, num_pkts 3.61e+11
+Time elapsed: 1518.1416793982187 mins
+
+GBAF test stats: batch#362000, SER 2e-10, numErr 66, num_pkts 3.62e+11
+Time elapsed: 1522.9400290846825 mins
+
+GBAF test stats: batch#363000, SER 2e-10, numErr 67, num_pkts 3.63e+11
+Time elapsed: 1527.7665542999903 mins
+
+GBAF test stats: batch#364000, SER 2e-10, numErr 67, num_pkts 3.64e+11
+Time elapsed: 1532.51493268013 mins
+
+GBAF test stats: batch#365000, SER 2e-10, numErr 67, num_pkts 3.65e+11
+Time elapsed: 1537.3158670783043 mins
+
+GBAF test stats: batch#366000, SER 2e-10, numErr 67, num_pkts 3.66e+11
+Time elapsed: 1542.1207910577457 mins
+
+GBAF test stats: batch#367000, SER 2e-10, numErr 68, num_pkts 3.67e+11
+Time elapsed: 1546.9012735128404 mins

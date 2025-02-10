@@ -1,0 +1,2 @@
+Simulating 100000000 blocks per SNR : 3 bits, 1 symbols
+

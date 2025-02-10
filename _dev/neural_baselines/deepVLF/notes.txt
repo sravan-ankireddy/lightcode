@@ -1,0 +1,1 @@
+python main.py --snr1 1 --snr2 100 --batchSize 100000 --train 0 --truncated 10 --restriction 'mid' --test_model 'weights/weight_ff_1_fb_100_gamma_1-1e-5'

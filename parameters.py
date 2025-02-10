@@ -1,13 +1,13 @@
 import argparse
 
-device = 'cuda:0'
+device = 'cuda:1'
 
 K = 3
 m = 3
 ell = int(K/m)
 memory = K
 
-T = 9
+T = 6
 
 if T == 9:
 	snr1 = -1.0
@@ -20,13 +20,16 @@ elif T == 6:
 elif T == 5:
     snr1 = 3.0
 
+# snr1 = snr1 + 1.0
+# snr1 = -1.0
+snr2 = 100.0
+# # snr1 = 0.0
+
 train = 1
 
 seed = 101
-arch = "1xfe" #3xfe
 features = "fy" # fy/fpn
-# batchSize = int(8192*10)
-batchSize = int(50000)
+batchSize = int(100000)
 
 def args_parser():
     parser = argparse.ArgumentParser()
@@ -43,19 +46,18 @@ def args_parser():
     parser.add_argument('--core', type=int, default=1)
     parser.add_argument('--enc_NS_model', type=int, default=3)
     parser.add_argument('--dec_NS_model', type=int, default=3)
-    parser.add_argument('--arch', type=str, default=arch)
     parser.add_argument('--seed', type=int, default=seed)
     parser.add_argument('--features', type=str, default=features)
 
-    parser.add_argument('--d_k_trx', type=int, default=4, help="feature dimension")
-    parser.add_argument('--d_k_rec', type=int, default=4, help="feature dimension")
+    parser.add_argument('--d_k_trx', type=int, default=16, help="feature dimension")
+    parser.add_argument('--d_k_rec', type=int, default=16, help="feature dimension")
     parser.add_argument('--dropout', type=float, default=0.0, help="prob of dropout")
 
     # Learning arguments
     parser.add_argument('--load_weights') # None
     parser.add_argument('--train', type=int, default= train)
     parser.add_argument('--reloc', type=int, default=1, help="w/ or w/o power rellocation")
-    parser.add_argument('--totalbatch', type=int, default=120101, help="number of total batches to train")
+    parser.add_argument('--totalbatch', type=int, default=200001, help="number of total batches to train")
     parser.add_argument('--batchSize', type=int, default=batchSize, help="batch size")
     parser.add_argument('--opt_method', type=str, default='adamW', help="Optimization method adamW,lamb,adam")
     parser.add_argument('--clip_th', type=float, default=0.5, help="clipping threshold")
