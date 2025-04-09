@@ -1,5 +1,5 @@
 # LightCode
-Official Implementation of "[LightCode: Light Analytical and Neural Codes for Channels with Feedback](https://arxiv.org/pdf/2403.10751)", IEEE Journal on Selected Areas in Communications, 2024.
+Official Implementation of "[LightCode: Light Analytical and Neural Codes for Channels with Feedback](https://ieeexplore.ieee.org/abstract/document/10845797?casa_token=lbFfZEL3Q5EAAAAA:6Q1AVkK7kHGIxTzca6BtUxo8fMzjo6Gm1L-Zn7stNagEm76G3Z5RedmaUd1bV3irjf37tZNbsA)", IEEE Journal on Selected Areas in Communications, 2025.
 
 ## Installation
 
